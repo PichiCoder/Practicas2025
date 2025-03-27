@@ -1,0 +1,12 @@
+INDEX VERSION 1.134+/home/mati/Repositorios/Practicas2025/eclipse_AyED_OO2/.metadata/.plugins/org.eclipse.jdt.core
+2529604730.index
+3637287477.index
+3141268426.index
+777382935.index
+2852381875.index
+3186742072.index
+130467578.index
+1014742624.index
+1865797976.index
+2682238144.index
+3659113090.index
