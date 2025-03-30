@@ -72,10 +72,10 @@ public void imprimirValores() {
 ```
 
 Code Smells:
-- Metodo largo.
+- Metodo largo (long method)
 - Reinventa la rueda, usa for en vez de pipelines (stream).
 - Nombre de metodo poco claro.
-- Se usan variables temporales que no son necesarias
+- Se usan variables temporales que no son necesarias (temporary field)
 - Se mezcla logica de calculo con la presentacion de la informacion.
 
 ``` java
