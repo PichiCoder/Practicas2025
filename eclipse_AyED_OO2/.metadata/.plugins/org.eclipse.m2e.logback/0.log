@@ -104,3 +104,4 @@
 2025-03-28 16:48:46,140 [Worker-32: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory /home/mati/Repositorios/Practicas2025/eclipse_AyED_OO2/ejerciciosRefactoring/src/test/resources
 2025-03-28 16:50:19,607 [Worker-24: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory /home/mati/Repositorios/Practicas2025/eclipse_AyED_OO2/ejerciciosRefactoring/src/main/resources
 2025-03-28 16:50:19,609 [Worker-24: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory /home/mati/Repositorios/Practicas2025/eclipse_AyED_OO2/ejerciciosRefactoring/src/test/resources
+2025-03-30 15:36:00,553 [Worker-6: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.

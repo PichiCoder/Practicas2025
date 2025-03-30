@@ -1,0 +1,52 @@
+@startuml
+
+class HBOO {
+
+
+}
+
+class Usuario {
+
+- nombre : String
+- telefono : Integer
+- email : String
+
++ getCostoPelicula(pelicula : Pelicula ) : Real
+}
+
+interface Suscripcion {
+    + calcularCostoPelicula(pelicula : Pelicula ) : Real
+}
+
+class Basico implements Suscripcion {
+    + calcularCostoPelicula(pelicula : Pelicula ) : Real
+}
+
+class Familia implements Suscripcion {
+    + calcularCostoPelicula(pelicula : Pelicula ) : Real
+}
+
+class Plus implements Suscripcion {
+    + calcularCostoPelicula(pelicula : Pelicula ) : Real
+}
+
+class Premium implements Suscripcion {
+    + calcularCostoPelicula(pelicula : Pelicula ) : Real
+}
+
+class Pelicula {
+- nombre : String
+- genero : String
+- fechaEstreno : Date
+- costo : Real
+}
+
+
+HBOO --> "usuarios 0..*" Usuario
+HBOO --> "peliculas 0..*" Pelicula
+
+Usuario --> "peliculasCompradas 0..*" Pelicula
+
+Usuario --> "suscripcion" Suscripcion
+
+@enduml
