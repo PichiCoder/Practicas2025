@@ -120,7 +120,7 @@ public class BinaryTree <T> {
 		while (!cola.isEmpty()) {
 			ab = cola.dequeue();
 			if (ab != null) {
-				System.out.print(ab.getData());
+				System.out.print(ab.getData() + " ");
 				if (ab.hasLeftChild()) {
 					cola.enqueue(ab.getLeftChild());
 				}
@@ -162,6 +162,16 @@ public class BinaryTree <T> {
 		}
 	}
 	
+	// Caso Base es hoja --> no hago nada
+	// Caso recursivo: tiene hijos --> se invierten en el nuevo arbol.
+	public BinaryTree<T> espejo(){
+		BinaryTree<T> ab = new BinaryTree<T>(this.data);
+		
+		this.espejoRecursivo(ab);
+		
+		return ab;
+    }
+	
 	private void espejoRecursivo(BinaryTree<T> ab) {
 			
 		if (this.hasLeftChild()) {
@@ -179,19 +189,33 @@ public class BinaryTree <T> {
 		}
 	}
 	
-	// Caso Base es hoja --> no hago nada
-	// Caso recursivo: tiene hijos --> se invierten en el nuevo arbol.
-	public BinaryTree<T> espejo(){
-		BinaryTree<T> ab = new BinaryTree<T>(this.data);
-		
-		this.espejoRecursivo(ab);
-		
-		return ab;
-    }
 
-	// 0<=n<=m
-	public void entreNiveles(int n, int m){
+
+	// Imprime el recorrido por niveles de los elementos del árbol receptor entre los niveles n y m (ambos inclusive).
+	// 0≤n<m≤altura del árbol)
+	public void printEntreNiveles(int n, int m){
+		BinaryTree<T> temp;
+		Queue<BinaryTree<T>> cola = new Queue<BinaryTree<T>>();
+		int nivelActual = 0;
 		
+		cola.enqueue(this);
+		cola.enqueue(null);
+		
+		while (!cola.isEmpty() & nivelActual <= m) {
+			temp = cola.dequeue();
+			if (temp != null) {
+				if (nivelActual >= n) System.out.print(temp.getData() + " ");
+				
+				if (temp.hasLeftChild()) cola.enqueue(temp.getLeftChild());
+				
+				if (temp.hasRightChild()) cola.enqueue(temp.getRightChild());
+			}
+			else if (!cola.isEmpty()) {
+				cola.enqueue(null);
+				nivelActual++;
+				System.out.println("");
+			}
+		}
    }
 		
 }

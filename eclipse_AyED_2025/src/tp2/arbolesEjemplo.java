@@ -2,7 +2,7 @@ package tp2;
 
 public class arbolesEjemplo {
 	
-	public static BinaryTree <Integer> arbolIntegersTeoria () {
+	public static BinaryTree <Integer> arbol_Integers_A() {
 		BinaryTree<Integer> ab = new BinaryTree<Integer>(40);
 		BinaryTree<Integer> hijoIzquierdo = new BinaryTree<Integer>(25);
 		
