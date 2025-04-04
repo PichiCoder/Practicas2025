@@ -14,24 +14,41 @@ class Usuario {
 + getCostoPelicula(pelicula : Pelicula ) : Real
 }
 
-interface Suscripcion {
-    + calcularCostoPelicula(pelicula : Pelicula ) : Real
+abstract class Suscripcion {
+	
++ abstract aplicarDescuento() : Real
+
++ abstract calcularCostoPelicula(pelicula : Pelicula) : Real
 }
 
-class Basico implements Suscripcion {
-    + calcularCostoPelicula(pelicula : Pelicula ) : Real
+abstract class SuscripcionNivelesBajos extends Suscripcion{
+	
++ calcularCostoPelicula(pelicula : Pelicula) : Real
 }
 
-class Familia implements Suscripcion {
-    + calcularCostoPelicula(pelicula : Pelicula ) : Real
+abstract class SuscripcionNivelesAltos extends Suscripcion{
+
++ calcularCostoPelicula(pelicula : Pelicula) : Real
 }
 
-class Plus implements Suscripcion {
-    + calcularCostoPelicula(pelicula : Pelicula ) : Real
+class SuscripcionBasica extends SuscripcionNivelesBajos {
+
++ aplicarDescuento() : Real
 }
 
-class Premium implements Suscripcion {
-    + calcularCostoPelicula(pelicula : Pelicula ) : Real
+class SuscripcionFamilia extends SuscripcionNivelesBajos{
+
++ aplicarDescuento() : Real
+}
+
+class SuscripcionPlus extends SuscripcionNivelesAltos{
+
++ aplicarDescuento() : Real
+}
+
+class SuscripcionPremium extends SuscripcionNivelesAltos{
+	
++ aplicarDescuento() : Real
 }
 
 class Pelicula {
