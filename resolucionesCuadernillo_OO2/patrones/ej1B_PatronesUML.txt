@@ -1,0 +1,46 @@
+@startuml
+
+/' NOTAS para describir el patron Adapter'/
+class Biblioteca
+note left: el Cliente
+
+class VoorheesExporter
+note top: el Objetivo
+
+class JSONsimpleAdapter
+note left: el Adaptador
+/' FIN NOTAS '/
+
+class JSONsimpleAdapter {
+
+}
+
+class Biblioteca {
+	+<<create>> Biblioteca() : Biblioteca
+	+agregarSocio(socio: Socio)
+	+exportarSocios(): String
+	+setExporter(exporter: VoorheesExporter)
+    +getExporter() : VoorheesExporter
+}
+
+
+class Socio {
+	-nombre: String
+	-legajo: String
+	-email: String
+
+	+<<create>> Socio(nombre: String, email: String, legajo: String)
+}
+
+class VoorheesExporter [[java:objetos.dos.ej1Patrones_Biblioteca.VoorheesExporter]] {
+	-exportar(socio: Socio): String
+	+exportar(socios: List<Socio>): String
+}
+
+Biblioteca --> "0..*" Socio
+
+Biblioteca --> VoorheesExporter
+
+VoorheesExporter --> JSONsimpleAdapter
+
+@enduml

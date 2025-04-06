@@ -1,0 +1,35 @@
+@startuml
+
+class Biblioteca {
+	+<<create>> Biblioteca() : Biblioteca
+	+agregarSocio(socio: Socio)
+	+exportarSocios(): String
+	+setExporter(exporter: VoorheesExporter)
+    +getExporter() : VoorheesExporter
+}
+
+
+class Socio {
+	-nombre: String
+	-legajo: String
+	-email: String
+
+	+<<create>> Socio(nombre: String, email: String, legajo: String)
+	+getNombre(): String
+	+setNombre(nombre: String): void
+	+getEmail(): String
+	+setEmail(email: String): void
+	+getLegajo(): String
+	+setLegajo(legajo: String): void
+}
+
+class VoorheesExporter [[java:objetos.dos.ej1Patrones_Biblioteca.VoorheesExporter]] {
+	-exportar(socio: Socio): String
+	+exportar(socios: List<Socio>): String
+}
+
+Biblioteca --> "0..*" Socio
+
+Biblioteca --> VoorheesExporter
+
+@enduml
