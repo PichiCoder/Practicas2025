@@ -1,4 +1,4 @@
-package objetos.dos.ej1_Patrones;
+package objetos.dos.ej1B_Patrones;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -6,9 +6,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 /*
- * Socio solo tiene getters y setters, nada para testear.
- * Biblioteca solo hay que testear el exportarSocios() que usa directamente el exportar() publico de VorheesExporter.
- * Tres casos de prueba para exportar porque el formato de retorno cambia
+ * El JSON se construye bien, el tema es que queda formateado en una linea en vez de pretty printed.
+ * Ademas algunos espacios no coinciden con el JSON que crea VoorheesExplorer.
  */
 
 class BibliotecaTest {
