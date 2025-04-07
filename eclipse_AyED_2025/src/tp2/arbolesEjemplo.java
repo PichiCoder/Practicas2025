@@ -21,6 +21,7 @@ public class arbolesEjemplo {
 		BinaryTree<Integer> hijoIzquierdo = new BinaryTree<Integer>(25);
 		
 		BinaryTree<Integer> hijoIzquierdoDe25 = new BinaryTree<Integer>(10);
+		hijoIzquierdoDe25.addLeftChild(new BinaryTree<Integer>(1)); //unica diferencia con arbol_Integers_A
 		
 		hijoIzquierdo.addLeftChild(hijoIzquierdoDe25);
 		hijoIzquierdo.addRightChild(new BinaryTree<Integer>(32));
@@ -29,8 +30,8 @@ public class arbolesEjemplo {
 		ab.addLeftChild(hijoIzquierdo);
 		ab.addRightChild(hijoDerecho);
 		
-		//hijoDerecho.addRightChild(new BinaryTree<Integer>(1)); //unica diferencia con arbol_Integers_A
-		hijoIzquierdoDe25.addLeftChild(new BinaryTree<Integer>(1));
+		//hijoDerecho.addRightChild(new BinaryTree<Integer>(1)); 
+		
 		
 		return ab;
 	}

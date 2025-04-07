@@ -11,22 +11,24 @@ public class ej7ParcialArboles {
 	public int contarUnicosHijos(BinaryTree<Integer> ab) {
 		int total = 0;
 		
-		//Condicion que controla cuando contar
+		//Condiciones que controlan cuando contar
 		if (ab.hasLeftChild() && !ab.hasRightChild()) total++;
 		if (!ab.hasLeftChild() && ab.hasRightChild()) total++;
 		
 		if (ab.hasLeftChild()) {
-			this.contarUnicosHijos(ab.getLeftChild());
+			return total += this.contarUnicosHijos(ab.getLeftChild());
 		}
 		if (ab.hasRightChild()) {
-			this.contarUnicosHijos(ab.getRightChild());
+			return total += this.contarUnicosHijos(ab.getRightChild());
 		}
 		
 		return total;
 		
 	}
-	
+
 	public boolean encontrarN (BinaryTree<Integer> ab, int n) {
+		
+		if (ab.isEmpty()) return false;
 		
 		int izq = -1, der = -1;
 
@@ -38,8 +40,13 @@ public class ej7ParcialArboles {
 				this.encontrarN(ab.getRightChild(), n);
 			}
 		}
+		// Cuando encuentro el nodo n, este else hace lo que tiene que hacer y despues la condicion se cuenta/controla bien.
+		//El problema es que la recursion sigue porque no la estoy cortando al encontrar n y return izq > der devuelve por el ultimo nodo recorrido,
+		// que no tiene nada que ver con la busqueda que ya se hizo en los subarboles de n.
 		else {
-
+			
+			//System.out.println("encontre a: " + ab.getData()); //debug
+			
 			if (ab.hasLeftChild()) {
 				izq = this.contarUnicosHijos(ab.getLeftChild());
 			}
@@ -47,21 +54,55 @@ public class ej7ParcialArboles {
 			if (ab.hasRightChild()) {
 				der = this.contarUnicosHijos(ab.getRightChild());
 			}
-
-		}
 			
+			System.out.println("resultado que esperamos: " + (izq > der));
+		}
+	
 		return izq > der;
+	}
+	
+	public boolean encontrarN_V2 (BinaryTree<Integer> ab, int n) {
+		
+		if (ab.isEmpty()) return false;
+
+		if (ab.getData() == n) {
+			int izq = -1, der = -1;
+			
+			if (ab.hasLeftChild()) {
+				izq = this.contarUnicosHijos(ab.getLeftChild());
+			}
+
+			if (ab.hasRightChild()) {
+				der = this.contarUnicosHijos(ab.getRightChild());
+			}
+			
+			return izq > der;
+		}
+		
+		//Si nodo != n, se sigue buscando y se retorna lo que corresponda a la instancia.
+		// No entiendo igual si anda bien y porque
+
+		if (ab.hasLeftChild()) {
+			return this.encontrarN_V2(ab.getLeftChild(), n);
+		}
+
+		if (ab.hasRightChild()) {
+			return this.encontrarN_V2(ab.getRightChild(), n);
+		}
+
+		return false;
 	}
 	
 	public boolean isLeftTree (int num) {
 		
+		//return this.encontrarN(this.arbol, num);
 		return this.encontrarN(this.arbol, num);
 	}
 	
 	/*
 	 * Recorrido en profundidad. 
 	 * Mientras no llegamos al "nodo == num", seguimos recorriendo.
-	 * Si llegamos a "nodo == num" --> mandamos subArb izquierdo y derecho del nodo a controlar:
+	 * Si llegamos a "nodo == num" --> mandamos subArb izquierdo y derecho a:
 	 * - contar raices de que cumplan con la condicion (que tengan un solo un hijo).
 	 */
 	
@@ -70,6 +111,9 @@ public class ej7ParcialArboles {
 		
 		ej7ParcialArboles ab = new ej7ParcialArboles(arb);
 		
-		System.out.println(ab.isLeftTree(25));
+		System.out.println(ab.isLeftTree(25)); // deberia retornar true
+		System.out.println(ab.isLeftTree(0)); // deberia retornar false
+		System.out.println(ab.isLeftTree(10)); // deberia retornar false
+		System.out.println(ab.isLeftTree(32)); // deberia retornar false
 	}
 }
