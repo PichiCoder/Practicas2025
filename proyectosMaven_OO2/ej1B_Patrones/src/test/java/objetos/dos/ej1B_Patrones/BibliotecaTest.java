@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 /*
  * El JSON se construye bien, el tema es que queda formateado en una linea en vez de pretty printed.
  * Ademas algunos espacios no coinciden con el JSON que crea VoorheesExplorer.
+ * Con la libreria Jackson parece que se puede hacer el pretty print, con JSONsimple no.
  */
 
 class BibliotecaTest {

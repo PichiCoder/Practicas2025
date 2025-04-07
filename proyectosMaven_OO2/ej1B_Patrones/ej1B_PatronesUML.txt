@@ -17,6 +17,10 @@ class JSONsimpleAdapter {
 
 }
 
+class JacksonAdapter {
+
+}
+
 class Biblioteca {
 	+<<create>> Biblioteca() : Biblioteca
 	+agregarSocio(socio: Socio)
@@ -44,5 +48,7 @@ Biblioteca --> "0..*" Socio
 Biblioteca --> VoorheesExporter
 
 VoorheesExporter --> JSONsimpleAdapter
+
+VoorheesExporter --> JacksonAdapter
 
 @enduml
