@@ -1,25 +1,53 @@
 @startuml
-class ToDoItem {
+class ToDoItem <<Context>>{
 
-    +<<create>> ToDoItem(name : String)
+    +<<create>> ToDoItem(name : String) : ToDoItem
 
     +start()
+      /'this.estado = this.estado().handle();'/
+
     +togglePause()
     +finish()
     +workedTime() : Duration
     +addComment(comment : String)
 }
 
-class {
+
+class Estado <<State>> {
+  +<<abstract>> handle(item : ToDoItem)  : Estado
 }
 
-class {
+/' La idea es que este devuelva un nuevo estado In-Progress,  en ves de usar un setter.'/
+
+class Pending <<Concrete State>>{
+  +handle()
+   /' return new InProgress cuando se usa start'/
+   /' return Error cuando se usa togglePause'/
+
 }
 
-class {
+class InProgress <<Concrete State>>{
+  +handle()
+      /' return new Paused cuando se usa togglePause'/
+      /' return new finished cuando se usa finish()'/
+
 }
 
-class {
+class Pause <<Concrete State>>{
+  +handle()
+    /' return new In-Progress cuando se usa togglePause'/
+    /' return new finished cuando se usa finish()'/
 }
 
+class Finished <<Concrete State>>{
+  +handle()
+     /' return Error cuando se usa togglePause'/
+}
+
+ToDoItem --> Estado
+
+Estado <|-- Pending
+Estado <|-- Finished
+Estado <|-- Pause
+Estado <|-- InProgress
 @enduml
