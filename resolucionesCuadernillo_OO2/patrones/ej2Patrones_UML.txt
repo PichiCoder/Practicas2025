@@ -25,25 +25,25 @@ class abstract EmpleadoProfesional{
 class EmpleadoTemporario{
   -canthoras : Integer
 
-    #basico() : Real
-    #adicionalPorAntiguedad() : Real
+    +basico() : Real
+    +adicionalPorAntiguedad() : Real
 }
 
 class EmpleadoPlanta{
   -antiguedad : Integer
 
-    #basico() : Real
+    +basico() : Real
+    +adicionalPorAntiguedad() : Real
 
 }
 
 class EmpleadoPasante{
   -examenRendido : Integer
-    #basico() : Real
-    #adicional() : Real
+
+    +basico() : Real
+    +adicional() : Real
 
 }
-
-
 
 
 EmpleadoPasante --|> Empleado
