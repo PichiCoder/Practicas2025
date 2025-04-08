@@ -1,35 +1,45 @@
 @startuml
 
 abstract class Empleado{
-    -nombre : String
-    -apellido : String
+    #nombre : String
+    #apellido : String
 
     +sueldo() : Real
+
     +abstract basico() : Real
     +abstract adicional() : Real
+
     +descuento() : Real
+
+}
+
+class abstract EmpleadoProfesional{
+  #cantHijos : Integer
+  #casado : Boolean
+
+    +adicional() : Real
+    +abstract adicionalPorAntiguedad() : Real
 
 }
 
 class EmpleadoTemporario{
   -canthoras : Integer
-  -cantHijos : Integer
-    +basico() : Real
-    +adicional() : Real
 
+    #basico() : Real
+    #adicionalPorAntiguedad() : Real
 }
 
 class EmpleadoPlanta{
+  -antiguedad : Integer
 
-    +basico() : Real
-    +adicional() : Real
+    #basico() : Real
 
 }
 
 class EmpleadoPasante{
   -examenRendido : Integer
-    +basico() : Real
-    +adicional() : Real
+    #basico() : Real
+    #adicional() : Real
 
 }
 
@@ -37,8 +47,10 @@ class EmpleadoPasante{
 
 
 EmpleadoPasante --|> Empleado
-EmpleadoTemporario --|> Empleado
-EmpleadoPlanta --|> Empleado
 
+EmpleadoProfesional --|> Empleado
+
+EmpleadoTemporario --|> EmpleadoProfesional
+EmpleadoPlanta --|> EmpleadoProfesional
 
 @enduml
