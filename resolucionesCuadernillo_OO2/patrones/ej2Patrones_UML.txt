@@ -1,5 +1,7 @@
 @startuml
 
+/' https://docs.google.com/document/d/1rK-ZwQNSjzt7lfvTaTGPRCxSj92hN_QhE0vIYjlyek8/edit?tab=t.0#heading=h.v5nrw2hsilss '/
+
 abstract class Empleado{
     #nombre : String
     #apellido : String
