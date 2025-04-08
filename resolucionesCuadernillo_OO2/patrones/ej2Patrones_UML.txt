@@ -6,19 +6,19 @@ abstract class Empleado{
 
     +sueldo() : Real
 
-    +abstract basico() : Real
-    +abstract adicional() : Real
+    +<<abstract>> basico() : Real
+    +<<abstract>> adicional() : Real
 
     +descuento() : Real
 
 }
 
-class abstract EmpleadoProfesional{
+abstract class EmpleadoProfesional{
   #cantHijos : Integer
   #casado : Boolean
 
     +adicional() : Real
-    +abstract adicionalPorAntiguedad() : Real
+    +<<abstract>> adicionalPorAntiguedad() : Real
 
 }
 
