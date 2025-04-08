@@ -12,7 +12,8 @@ abstract class Empleado{
 }
 
 class EmpleadoTemporario{
-
+  -canthoras : Integer
+  -cantHijos : Integer
     +basico() : Real
     +adicional() : Real
 
@@ -26,7 +27,7 @@ class EmpleadoPlanta{
 }
 
 class EmpleadoPasante{
-
+  -examenRendido : Integer
     +basico() : Real
     +adicional() : Real
 
