@@ -1,5 +1,37 @@
 @startuml
 
+class MediaPlayer{
+  +play()
+}
 
+class Media{
+  +play()
+}
+
+class Audio{
+  +play()
+}
+
+class VideoFile{
+  +play()
+}
+
+class VideoStream{
+  +reproduce()
+}
+
+class VideoStreamAdapter{
+  +play()
+}
+
+MediaPlayer --> "*" Media
+
+Audio --|> Media
+
+VideoFile --|> Media
+
+VideoStreamAdapter --|> Media
+
+VideoStreamAdapter --> VideoStream
 
 @enduml
