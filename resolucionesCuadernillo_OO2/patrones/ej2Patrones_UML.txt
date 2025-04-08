@@ -40,3 +40,4 @@ EmpleadoTemporario --|> Empleado
 EmpleadoPlanta --|> Empleado
 
 
+@enduml
