@@ -1,0 +1,19 @@
+@startuml
+
+abstract class Empleado{
+	-nombre : String
+	-apellido : String
+	
+    +sueldo() : Real
+    +basico() : Real
+    +adicional() : Real
+    +descuento() : Real
+        
+}
+
+
+VoorheesExporter <|-- JacksonAdapter
+
+JSONsimpleAdapter --> JacksonLibrary
+
+@enduml
