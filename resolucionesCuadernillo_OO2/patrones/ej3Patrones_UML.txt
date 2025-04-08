@@ -1,6 +1,6 @@
 @startuml
 
-class MediaPlayer{
+class MediaPlayer <<Client>>{
   +play()
 }
 
@@ -16,11 +16,11 @@ class VideoFile{
   +play()
 }
 
-class VideoStream{
+class VideoStream <<Adaptee>>{
   +reproduce()
 }
 
-class VideoStreamAdapter{
+class VideoStreamAdapter <<Adapter>>{
   +play()
 }
 
