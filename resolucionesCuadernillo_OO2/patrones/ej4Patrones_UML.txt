@@ -1,0 +1,23 @@
+class ToDoItem {
+
+    +<<create>> ToDoItem(name : String)
+
+    +start()
+    +togglePause()
+    +finish()
+    +workedTime() : Duration
+    +addComment(comment : String)
+}
+
+class {
+}
+
+class {
+}
+
+class {
+}
+
+
+class {
+}
