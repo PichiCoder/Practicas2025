@@ -1,11 +1,9 @@
 @startuml
 class ToDoItem <<Context>>{
 
-    +<<create>> ToDoItem(name : String) : ToDoItem
+    +<<create>> ToDoItem(name : String)
 
     +start()
-      /'this.estado = this.estado().handle();'/
-
     +togglePause()
     +finish()
     +workedTime() : Duration
@@ -13,41 +11,37 @@ class ToDoItem <<Context>>{
 }
 
 
-class Estado <<State>> {
-  +<<abstract>> handle(item : ToDoItem)  : Estado
+interface State <<State>> {
+  +handleStart() : State
+  +handleTogglePause() : State
+  +handleFinish() : State
+
+  +handleWorkedTime(inicio : LocalDate) : Duration 
+	+handleComment(c : String) : String
 }
 
-/' La idea es que este devuelva un nuevo estado In-Progress,  en ves de usar un setter.'/
-
 class Pending <<Concrete State>>{
-  +handle()
-   /' return new InProgress cuando se usa start'/
-   /' return Error cuando se usa togglePause'/
+
 
 }
 
 class InProgress <<Concrete State>>{
-  +handle()
-      /' return new Paused cuando se usa togglePause'/
-      /' return new finished cuando se usa finish()'/
+
 
 }
 
-class Pause <<Concrete State>>{
-  +handle()
-    /' return new In-Progress cuando se usa togglePause'/
-    /' return new finished cuando se usa finish()'/
+class Paused <<Concrete State>>{
+
 }
 
 class Finished <<Concrete State>>{
-  +handle()
-     /' return Error cuando se usa togglePause'/
+
 }
 
-ToDoItem --> Estado
+ToDoItem --> State
 
-Estado <|-- Pending
-Estado <|-- Finished
-Estado <|-- Pause
-Estado <|-- InProgress
+State <|-.- Pending
+State <|-.- Finished
+State <|-.- Paused
+State <|-.- InProgress
 @enduml

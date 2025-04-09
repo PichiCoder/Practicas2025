@@ -4,7 +4,6 @@
 
 abstract class Empleado{
     #nombre : String
-    #apellido : String
 
     +sueldo() : Real
 
@@ -14,6 +13,18 @@ abstract class Empleado{
     +descuento() : Real
 
 }
+
+note right of Empleado::"sueldo()"
+  metodo plantilla
+end note
+
+note left of Empleado::"basico()"
+  metodo hook
+end note
+
+note left of Empleado::"adicional()"
+  metodo hook
+end note
 
 abstract class EmpleadoProfesional{
   #cantHijos : Integer
@@ -25,7 +36,7 @@ abstract class EmpleadoProfesional{
 }
 
 class EmpleadoTemporario{
-  -canthoras : Integer
+  -hsTrabajadas : Integer
 
     +basico() : Real
     +adicionalPorAntiguedad() : Real

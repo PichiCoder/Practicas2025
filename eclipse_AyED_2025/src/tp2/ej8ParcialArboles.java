@@ -13,7 +13,7 @@ public class ej8ParcialArboles {
 			
 		if (a1.hasLeftChild()) {
 			if (a2.hasLeftChild()) {
-				if (!esPrefijo(a1.getLeftChild(), a2.getLeftChild())) return false;
+				if (!this.esPrefijo(a1.getLeftChild(), a2.getLeftChild())) return false;
 			}
 			else
 				return false;
@@ -21,13 +21,15 @@ public class ej8ParcialArboles {
 		
 		if (a1.hasRightChild()) {
 			if (a2.hasRightChild()) {
-				if (!esPrefijo(a1.getRightChild(), a2.getRightChild())) return false;
+				if (!this.esPrefijo(a1.getRightChild(), a2.getRightChild())) return false;
 			}
 			else
 				return false;
 		}
 		
-		return true;
+		return true; 
+		//Cuando se llega a una hoja que no entro en el primer if, se retorna este true y se empieza a propagar el resultado hacia arriba, 
+		// porque si llegaste hasta aca, el camino de nodos superior nunca retorno false.
 	}
 	
 	public static void main(String[] args ) {
