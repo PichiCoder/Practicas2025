@@ -1,7 +1,5 @@
 @startuml
 
-
-
 class Biblioteca <<Client>>{
 	+<<create>> Biblioteca() : Biblioteca
 	+agregarSocio(socio: Socio)
@@ -48,8 +46,8 @@ VoorheesExporter <|-- JSONsimpleAdapter
 
 VoorheesExporter <|-- JacksonAdapter
 
-JacksonAdapter --> JSONsimpleLibrary
+JacksonAdapter --> JacksonLibrary
 
-JSONsimpleAdapter --> JacksonLibrary
+JSONsimpleAdapter --> JSONsimpleLibrary
 
 @enduml
