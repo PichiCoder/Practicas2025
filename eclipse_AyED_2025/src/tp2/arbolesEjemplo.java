@@ -59,4 +59,27 @@ public class arbolesEjemplo {
 		
 		return ab;
 	}
+	
+	//Para testear ejercicio 9
+	/*
+	  			20
+	 		5		30
+	  -5 				-9
+	 */
+	public static BinaryTree <Integer> arbol_Simple() {
+		BinaryTree<Integer> ab = new BinaryTree<Integer>(20);
+		BinaryTree<Integer> hijoIzquierdo = new BinaryTree<Integer>(5);
+		BinaryTree<Integer> hijoDerecho = new BinaryTree<Integer>(30);
+		
+		BinaryTree<Integer> hijoIzquierdoDe5 = new BinaryTree<Integer>(-5);
+		hijoIzquierdo.addLeftChild(hijoIzquierdoDe5);
+		
+		BinaryTree<Integer> hijoDerechoDe30 = new BinaryTree<Integer>(-9);
+		hijoDerecho.addRightChild(hijoDerechoDe30);
+			
+		ab.addLeftChild(hijoIzquierdo);
+		ab.addRightChild(hijoDerecho);
+		
+		return ab;
+	}
 }
