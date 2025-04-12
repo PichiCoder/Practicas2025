@@ -5,7 +5,7 @@ import java.time.LocalDate;
 
 public class ToDoItem {
 	private String name, comentario;
-	private State state;
+	private State state; //private StateInterface state;
 	private LocalDate inicio, fin;
 	
 	/* Instancia un ToDoItem nuevo en estado pending con <name> como nombre.*/
@@ -42,13 +42,10 @@ public class ToDoItem {
 	 * genera un error informando la causa específica del mismo. */
 	 public Duration workedTime() {
 		 
-		return this.state.handleWorkedTime(this.inicio); 
-
+		return this.state.handleWorkedTime(this.inicio, this.fin); 
 	}
 
-	 /* Agrega un comentario al ToDoItem siempre y cuando no haya finalizado. Caso
-	 * contrario no hace nada."
-	 */
+	 /* Agrega un comentario al ToDoItem siempre y cuando no haya finalizado. Caso contrario no hace nada." */
 	 public void addComment(String comment) {
 		this.comentario = this.state.handleComment(comment);
 	}

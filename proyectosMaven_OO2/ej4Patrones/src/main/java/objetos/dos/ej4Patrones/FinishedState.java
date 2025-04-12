@@ -1,9 +1,6 @@
 package objetos.dos.ej4Patrones;
 
-import java.time.Duration;
-import java.time.LocalDate;
-
-public class FinishedState implements State{
+public class FinishedState extends State{
 	
 	public State handleStart() {
 		return this;
@@ -17,12 +14,8 @@ public class FinishedState implements State{
 		return this;
 	}
 	
-	public Duration handleWorkedTime(LocalDate inicio) {
-		return Duration.between(inicio, LocalDate.now());
-	}
-	
+	@Override
 	public String handleComment(String c) {
-		return "";
+		return null;
 	}
-
 }

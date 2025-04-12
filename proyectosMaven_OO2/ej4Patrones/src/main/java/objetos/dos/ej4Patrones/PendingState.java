@@ -3,7 +3,7 @@ package objetos.dos.ej4Patrones;
 import java.time.Duration;
 import java.time.LocalDate;
 
-public class PendingState implements State{
+public class PendingState extends State{
 	
 	public State handleStart() {
 		return new InProgressState();
@@ -17,12 +17,8 @@ public class PendingState implements State{
 		return this;
 	}
 	
-	public Duration handleWorkedTime(LocalDate inicio) {
+	@Override
+	public Duration handleWorkedTime(LocalDate inicio, LocalDate fin) {
 		throw new RuntimeException("ToDoItem no iniciado");
 	}
-	
-	public String handleComment(String c) {
-		return c;
-	}
-
 }
