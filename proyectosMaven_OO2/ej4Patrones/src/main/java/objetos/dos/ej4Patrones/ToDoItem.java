@@ -25,13 +25,13 @@ public class ToDoItem {
 	* estado es paused. Caso contrario (pending o finished) genera un error
 	* informando la causa específica del mismo.
 	*/
-	 public void togglePause() {
+	public void togglePause() {
 		 this.state = this.state.handleTogglePause();
 	}
 	 
 	 /* Pasa el ToDoItem a finished, siempre y cuando su estado actual sea in-progress o paused. 
 	  Si se encuentra en otro estado, no hace nada. */
-	 public void finish() {
+	public void finish() {
 		 this.state = this.state.handleFinish();
 		 this.fin = LocalDate.now();
 	}
@@ -40,13 +40,12 @@ public class ToDoItem {
 	 * hasta que se finalizó. En caso de que no esté finalizado, el tiempo que
 	 * haya transcurrido hasta el momento actual. Si el ToDoItem no se inició,
 	 * genera un error informando la causa específica del mismo. */
-	 public Duration workedTime() {
-		 
+	public Duration workedTime() {
 		return this.state.handleWorkedTime(this.inicio, this.fin); 
 	}
 
 	 /* Agrega un comentario al ToDoItem siempre y cuando no haya finalizado. Caso contrario no hace nada." */
-	 public void addComment(String comment) {
+	public void addComment(String comment) {
 		this.comentario = this.state.handleComment(comment);
 	}
 }

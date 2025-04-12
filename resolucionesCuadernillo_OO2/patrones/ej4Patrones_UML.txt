@@ -1,47 +1,59 @@
 @startuml
 class ToDoItem <<Context>>{
+  -name : String
+  -comentario : String
+  -inicio : LocalDate
+  -fin : LocalDate
 
-    +<<create>> ToDoItem(name : String)
-
-    +start()
-    +togglePause()
-    +finish()
-    +workedTime() : Duration
-    +addComment(comment : String)
+  +<<create>> ToDoItem(name : String)
+  +start()
+  +togglePause()
+  +finish()
+  +workedTime() : Duration
+  +addComment(comment : String)
 }
 
-
-interface State <<State>> {
-  +handleStart() : State
-  +handleTogglePause() : State
-  +handleFinish() : State
+abstract class State <<State>> {
+  +<<abstract>> handleStart() : State
+  +<<abstract>> handleTogglePause() : State
+  +<<abstract>> handleFinish() : State
 
   +handleWorkedTime(inicio : LocalDate) : Duration 
 	+handleComment(c : String) : String
 }
 
-class Pending <<Concrete State>>{
+class PendingState <<Concrete State>>{
+  +handleStart() : State
+  +handleTogglePause() : State
+  +handleFinish() : State
 
-
+  +handleWorkedTime(inicio : LocalDate) : Duration 
 }
 
-class InProgress <<Concrete State>>{
-
-
+class InProgressState <<Concrete State>>{
+  +handleStart() : State
+  +handleTogglePause() : State
+  +handleFinish() : State
 }
 
-class Paused <<Concrete State>>{
-
+class PausedState <<Concrete State>>{
+  +handleStart() : State
+  +handleTogglePause() : State
+  +handleFinish() : State
 }
 
-class Finished <<Concrete State>>{
+class FinishedState <<Concrete State>>{
+  +handleStart() : State
+  +handleTogglePause() : State
+  +handleFinish() : State
 
+	+handleComment(c : String) : String
 }
 
 ToDoItem --> State
 
-State <|-.- Pending
-State <|-.- Finished
-State <|-.- Paused
-State <|-.- InProgress
+State <|-- PendingState
+State <|-- FinishedState
+State <|-- PausedState
+State <|-- InProgressState
 @enduml
