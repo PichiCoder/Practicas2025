@@ -24,8 +24,13 @@ class VideoStreamAdapter <<Adapter>>{
   +play()
 }
 
-note right of VideoStreamAdapter::"play()"
-  return this.VideoStream.reproduce();
+note left of VideoStreamAdapter::"play()"
+  return this.VideoStream.reproduce(this);
+end note
+
+note left of VideoStream::"reproduce()"
+  entiendo que reproduce() deberia poder 
+  recibir algo por parametro.
 end note
 
 

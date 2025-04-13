@@ -1,8 +1,10 @@
 package objetos.dos.ej4Patrones;
 
+import java.time.LocalDate;
+
 public class InProgressState extends State{
 	
-	public State handleStart() {
+	public State handleStart(LocalDate f) {
 		return this;
 	}
 	
@@ -10,7 +12,7 @@ public class InProgressState extends State{
 		return new PausedState();
 	}
 	
-	public State handleFinish() {
+	public State handleFinish(LocalDate f) {
 		return new FinishedState();
 	}
 

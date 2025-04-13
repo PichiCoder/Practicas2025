@@ -23,29 +23,29 @@ abstract class State <<State>> {
 }
 
 class PendingState <<Concrete State>>{
-  +handleStart() : State
+  +handleStart(f : LocalDate) : State
   +handleTogglePause() : State
-  +handleFinish() : State
+  +handleFinish(f : LocalDate) : State
 
   +handleWorkedTime(inicio : LocalDate) : Duration 
 }
 
 class InProgressState <<Concrete State>>{
-  +handleStart() : State
+  +handleStart(f : LocalDate) : State
   +handleTogglePause() : State
-  +handleFinish() : State
+  +handleFinish(f : LocalDate) : State
 }
 
 class PausedState <<Concrete State>>{
-  +handleStart() : State
+  +handleStart(f : LocalDate) : State
   +handleTogglePause() : State
-  +handleFinish() : State
+  +handleFinish(f : LocalDate) : State
 }
 
 class FinishedState <<Concrete State>>{
-  +handleStart() : State
+  +handleStart(f : LocalDate) : State
   +handleTogglePause() : State
-  +handleFinish() : State
+  +handleFinish(f : LocalDate) : State
 
 	+handleComment(c : String) : String
 }

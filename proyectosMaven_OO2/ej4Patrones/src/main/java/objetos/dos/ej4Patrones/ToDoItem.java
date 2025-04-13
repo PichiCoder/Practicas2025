@@ -17,8 +17,7 @@ public class ToDoItem {
 	/* Pasa el ToDoItem a in-progress, siempre y cuando su estado actual sea pending. 
 	 * Si se encuentra en otro estado, no hace nada.*/
 	public void start() {
-		this.state = this.state.handleStart();
-		this.inicio = LocalDate.now();
+		this.state = this.state.handleStart(this.inicio);
 	}
 
 	/* Pasa el ToDoItem a paused si su estado es in-progress, o a in-progress si su
@@ -32,8 +31,7 @@ public class ToDoItem {
 	 /* Pasa el ToDoItem a finished, siempre y cuando su estado actual sea in-progress o paused. 
 	  Si se encuentra en otro estado, no hace nada. */
 	public void finish() {
-		 this.state = this.state.handleFinish();
-		 this.fin = LocalDate.now();
+		 this.state = this.state.handleFinish(this.fin);
 	}
 
 	 /* Retorna el tiempo que transcurrió desde que se inició el ToDoItem (start)

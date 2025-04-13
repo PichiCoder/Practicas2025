@@ -5,9 +5,9 @@ import java.time.LocalDate;
 
 public abstract class State{
 	
-	public abstract State handleStart();
+	public abstract State handleStart(LocalDate f);
 	public abstract State handleTogglePause();
-	public abstract State handleFinish();
+	public abstract State handleFinish(LocalDate f);
 	
 	public Duration handleWorkedTime(LocalDate inicio, LocalDate fin) {
 		if (fin == null) fin = LocalDate.now();
@@ -18,4 +18,5 @@ public abstract class State{
 	public String handleComment(String c) {
 		return c;
 	}
+	
 }
