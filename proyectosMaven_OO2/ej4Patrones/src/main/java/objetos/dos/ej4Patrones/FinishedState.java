@@ -12,7 +12,7 @@ public class FinishedState extends State{
 		throw new RuntimeException("El objeto ToDoItem no se encuentra en pause o in-progress");
 	}
 	
-	public State handleFinish(LocalDate fechaFin) {
+	public State handleFinish(LocalDate fechaFin) { 
 		fechaFin = LocalDate.now();
 		return this;
 	}
