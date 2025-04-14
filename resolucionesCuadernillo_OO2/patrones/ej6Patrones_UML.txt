@@ -1,0 +1,65 @@
+@startuml
+
+/'aun parece que se trata de estados, por como esta la excursion. 
+Provisoria cuando aun no alcanzo cupo minimo 
+Definitiva cuando se alcanzo el minimo '/
+
+class Excursion <<Context>>{
+    -nombre : String
+    -fechaInicio : LocalDate
+    -fechaFin : LocalDate
+    -puntoEncuentro : String
+    -costo : Real
+    -cupoMin : Integer
+    -cupoMax : Integer
+
+    +informacionAcercaDeMi () : String
+        /'retorna lo que devuelva otorgarInformacion(ex : Excursion), que depende del estado'/
+        
+    +<<create>> Excursion(nom, fI, fF, pE, costo, cMin, cMax)
+}
+
+abstract class EstadoExcursion <<State>> {
+    
+    -informacionBasica(ex : Excursion) : String
+    +<<abstract>> otorgarInformacion(ex : Excursion) : String
+        /'nombre, costo, fechas y punto de encuentro se retornan siempre
+        Entonces se retorna eso con informacionBasica() y el resto lo implementa cada estado'/
+}
+
+class ExcursionProvisoria <<ConcreteState>> extends EstadoExcursion {
+    +otorgarInformacion(ex : Excursion) : String
+        /'nombre, costo, fechas, punto de encuentro, 
+        cantidad de usuarios faltantes para alcanzar el cupo mínimo.'/
+}
+
+abstract class ExcursionDefinitiva extends EstadoExcursion{
+    +<<abstract>> otorgarInformacion(ex : Excursion) : String
+        
+}
+
+class ExcursionDefinitivaCupoCompleto <<ConcreteState>> extends ExcursionDefinitiva {
+    +otorgarInformacion(ex : Excursion) : String
+        /'nombre, costo, fechas y punto de encuentro.'/
+}
+
+class ExcursionDefinitivaCupoIncompleto <<ConcreteState>> extends ExcursionDefinitiva {
+    +otorgarInformacion(ex : Excursion) : String
+        /'nombre, costo, fechas, punto de encuentro, los mails de los usuarios inscriptos
+         y cantidad de usuarios faltantes para alcanzar el cupo máximo.'/
+}
+
+class Usuario {
+    -nombre : String
+    -apellido : String
+    -email : String
+
+    +<<create>> Usuario (nombre, apellido, email)
+    +inscribirmeEnExcursion(e : Excursion)
+    
+}
+
+Excursion --> EstadoExcursion
+Excursion --> "inscriptos *" Usuario
+Excursion --> "listaDeEspera *" Usuario
+@enduml
