@@ -91,15 +91,23 @@ public class GeneralTree<T>{
 	}
 	
 	// ====================== ejercicio 3 ======================
+	// devuelve la altura del árbol, es decir, la longitud del camino más largo desde el nodo raíz hasta una hoja.
 	public int altura() {	 
-			
-		return 0;
+		int alt = 1;
+		
+		for (GeneralTree<T> child : this.getChildren()) {
+			return alt += child.altura();
+		}
+		
+		return alt;
 	}
 	
+	// devuelve la profundidad o nivel del dato en el árbol. El nivel de un nodo es la longitud del único camino de la raíz al nodo.
 	public int nivel(T dato){
 		return 0;
-	  }
+	}
 
+	// la amplitud (ancho) de un árbol se define como la cantidad de nodos que se encuentran en el nivel que posee la mayor cantidad de nodos.
 	public int ancho(){
 		
 		return 0;
