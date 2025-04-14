@@ -78,9 +78,14 @@ public class GeneralTree<T>{
 	
 	public void inOrder () {
 		
-		for (GeneralTree<T> child : this.getChildren()) {
-			System.out.println(child.getData());
-			child.inOrder();
+		if (this.hasChildren()) 
+			System.out.println(this.getChildren().get(0).getData());
+		
+		System.out.println(this.getData());
+		
+		for (int i=1; i < this.getChildren().size(); i++) {
+					
+			this.getChildren().get(i).inOrder();
 		}
 		
 	}
