@@ -1,0 +1,67 @@
+@startuml
+
+/' 
+link cuadernillo 
+https://docs.google.com/document/d/1rK-ZwQNSjzt7lfvTaTGPRCxSj92hN_QhE0vIYjlyek8/edit?tab=t.0
+'/
+
+class Usuario { 
+    -nombre : String
+}
+
+class AutoEnAlquiler <<Context>> { 
+    -precioPorDia : Real
+    -cantidadPlazas : Integer
+    -marca : String
+
+    +setPoliticaCancelacion(p : PoliticaCancelacion)
+    +getPoliticaCancelacion() : PoliticaCancelacion
+}
+
+class Reserva { 
+    -cantidadDias : Integer
+    -fecha : Date
+
+    +montoAPagar() : Real
+      /'se calcula como el precio por día del auto del cual se hizo la reserva,  
+      multiplicado por la cantidad de días.'/
+    
+    +montoAReembolsar(p : PoliticaCancelacion) : Real
+       /'depende del auto, le mando por parametro la Politica con auto.getPoliticaCancelacion()
+       
+       '/
+}
+
+/' 
+se reembolsará el monto total sin importar la fecha de cancelación 
+(que de todas maneras debe ser anterior a la fecha de inicio de la reserva).
+'/
+abstract class PoliticaCancelacion <<Strategy>> { 
+
+}
+
+
+/'
+se reembolsará el monto total si la cancelación se hace hasta una semana antes 
+y 50% si se hace hasta 2 días antes.
+'/
+class PoliticaCancelacionFlexible <<ConcreteStrategy>> implements PoliticaCancelacion {
+
+}
+
+/'
+no se reembolsará nada (0, cero) sin importar la fecha tentativa de cancelación.  
+'/
+class PoliticaCancelacionModerada <<ConcreteStrategy>> implements PoliticaCancelacion {
+
+}
+
+class PoliticaCancelacionEstricta <<ConcreteStrategy>> implements PoliticaCancelacion {
+
+}
+
+Reserva --> "conductor" Usuario
+Reserva --> "1" AutoEnAlquiler
+Usuario --> AutoEnAlquiler
+AutoEnAlquiler --> PoliticaCancelacion
+@enduml
