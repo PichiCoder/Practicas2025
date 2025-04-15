@@ -41,17 +41,12 @@ class ExcursionProvisoria <<ConcreteState>> extends EstadoExcursion {
         /' cantidad de usuarios faltantes para alcanzar el cupo mínimo.'/
 }
 
-abstract class ExcursionDefinitiva extends EstadoExcursion{
-    +<<abstract>> otorgarInformacion(ex : Excursion) : String
-        
-}
-
-class ExcursionDefinitivaCupoCompleto <<ConcreteState>> extends ExcursionDefinitiva {
+class ExcursionDefinitivaCupoCompleto <<ConcreteState>> extends EstadoExcursion {
     -informacionParticularDelEstado(ex : Excursion) : String
         /' vacio porque es igual que lo basico'/
 }
 
-class ExcursionDefinitivaCupoIncompleto <<ConcreteState>> extends ExcursionDefinitiva {
+class ExcursionDefinitivaCupoIncompleto <<ConcreteState>> extends EstadoExcursion {
     -informacionParticularDelEstado(ex : Excursion) : String
         /'los mails de los usuarios inscriptos
          y cantidad de usuarios faltantes para alcanzar el cupo máximo.'/
