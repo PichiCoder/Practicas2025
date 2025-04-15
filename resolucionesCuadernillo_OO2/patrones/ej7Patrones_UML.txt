@@ -5,10 +5,13 @@
 class Calculadora <<Context>>{
     -valorAcumulado : Real
 
-    +getResultado() : String 
-    +borrar()
+    /'==== 3 metodos que agregue ===='/
+    +setValorAcumulado()
+    +getValorAcumulado() : Real
     +setEstado(e : Estado)
-
+    
+    +borrar()
+    +getResultado() : String 
     +setValor(unValor : Real)
     +mas()
     +menos()
@@ -24,7 +27,8 @@ Cuando la calculadora está en error, el mensaje getResultado() retorna el strin
 '/
 
 abstract class Estado <<State>>{
-    +handleSetValor(unValor : Real, c : Calculadora)
+    +<<abstract>> handleSetValor(unValor : Real, c : Calculadora)
+    
     +handleResultado(c : Calculadora) : String
 
     +handleMas(c : Calculadora)
@@ -34,28 +38,33 @@ abstract class Estado <<State>>{
 }
 
 class Inicial <<ConcreteState>> extends Estado {
+    +handleSetValor(unValor : Real, c : Calculadora)
 
+    +handleMas(c : Calculadora)
+    +handleMenos(c : Calculadora)
+    +handlePor(c : Calculadora)
+    +handleDividido(c : Calculadora)
 }
 
 class Error <<ConcreteState>> extends Estado {
-
+    +handleResultado(c : Calculadora) : String
+    +handleSetValor(unValor : Real, c : Calculadora)
 }
 
 class Sumando <<ConcreteState>> extends Estado {
-
+    +handleSetValor(unValor : Real, c : Calculadora)
 }
 
 class Restando <<ConcreteState>> extends Estado {
-
+    +handleSetValor(unValor : Real, c : Calculadora)
 }
 
 class Multiplicando <<ConcreteState>> extends Estado {
-
+    +handleSetValor(unValor : Real, c : Calculadora)
 }
 
-/'dividir por 0 retorna error'/
 class Dividiendo <<ConcreteState>> extends Estado {
-
+    +handleSetValor(unValor : Real, c : Calculadora)
 }
 
 Calculadora --> "operacion 1" Estado

@@ -1,0 +1,72 @@
+@startuml
+
+/' Tanto las clases existentes como las nuevas a utilizar pueden ser ubicadas en las jerarquías que corresponda 
+(modificar la clase de la que extienden o la interfaz que implementan) y se les pueden agregar mensajes, 
+pero no se pueden modificar los mensajes que ya existen porque otras partes del sistema podrían dejar de funcionar.
+
+> Me estan pidiendo estrategias para cambiar el tipo de conexion y el tipo de calculador
+'/
+
+class Dispositivo <<Context>>{
+
+    +send(data : String) : String
+    +setCRCType(crc : CRCCalculatorStrategy)
+    +setConnectionType(conn  : ConnectionStrategy)
+      /' ademas de setear, usas showBanner con pict de la conexion y ring'/
+        
+}
+
+class Ringer {
+    +ring()
+}
+
+class Display {
+    +showBanner(img : String) : String
+}
+
+interface CRCCalculatorStrategy <<Strategy>> {
+    +crcFor(data : String) : Integer
+}
+
+class CRC16_Calculator <<ConcreteStrategy>> implements CRCCalculatorStrategy {
+    +crcFor(data : String) : Integer
+}
+
+class CRC32_Calculator <<ConcreteStrategy>> implements CRCCalculatorStrategy {
+    +crcFor(data : String) : Integer
+}
+
+interface ConnectionStrategy <<Strategy>> {
+    +sendData(data : String, crc : Integer) : String
+    +pict() : String
+}
+
+class WifiConn <<ConcreteStrategy>> implements ConnectionStrategy{
+    -pict : String
+
+    +sendData(data : String, crc : Integer) : String
+    +pict() : String
+}
+
+/' Este Adaptador NO es necesario porque puedo agregarle mensajes a 4GConnection
+class 4gConnectionAdapter <<ConcreteStrategy>> implements ConnectionStrategy{
+    -pict : String
+
+    +sendData(data : String, crc : Integer) : String
+    +pict() : String
+}
+'/
+
+class Connection4G <<ConcreteStrategy>> implements ConnectionStrategy {
+    -symb : String
+
+    +transmit(data : String, crc : Integer) : String
+    +sendData(data : String, crc : Integer) : String
+    +pict() : String
+}
+
+Dispositivo --> "ringer" Ringer
+Dispositivo --> "display" Display
+Dispositivo --> "crcCalculator" CRCCalculatorStrategy
+Dispositivo --> "connection" ConnectionStrategy
+@enduml
