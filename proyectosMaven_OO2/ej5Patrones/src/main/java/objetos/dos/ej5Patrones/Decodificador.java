@@ -1,12 +1,14 @@
 package objetos.dos.ej5Patrones;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Decodificador {
 	private List<Pelicula> grillaPeliculas;
-	private List<Pelicula> peliculasYaReproducidas;
+	private Set<Pelicula> peliculasYaReproducidas; // puedo usar Set para evitar duplicados
 	private Sugerencia sugerencia;
 	
 	public Decodificador(List<Pelicula> grillaPeliculas, Sugerencia sugerencia) {
@@ -14,7 +16,7 @@ public class Decodificador {
 		this.grillaPeliculas = grillaPeliculas;
 		this.sugerencia = sugerencia;
 
-		this.peliculasYaReproducidas = new ArrayList<Pelicula>();
+		this.peliculasYaReproducidas = new HashSet<Pelicula>();
 	}
 	
 	public void agregarAGrilla(Pelicula p) {
@@ -45,11 +47,11 @@ public class Decodificador {
 		this.grillaPeliculas = grillaPeliculas;
 	}
 
-	public List<Pelicula> getPeliculasYaReproducidas() {
+	public Set<Pelicula> getPeliculasYaReproducidas() {
 		return peliculasYaReproducidas;
 	}
 
-	public void setPeliculasYaReproducidas(List<Pelicula> peliculasYaReproducidas) {
+	public void setPeliculasYaReproducidas(Set<Pelicula> peliculasYaReproducidas) {
 		this.peliculasYaReproducidas = peliculasYaReproducidas;
 	}
 }
