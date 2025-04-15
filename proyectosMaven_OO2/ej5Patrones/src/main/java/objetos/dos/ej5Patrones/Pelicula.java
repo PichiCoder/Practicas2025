@@ -29,7 +29,7 @@ public class Pelicula {
 		return pelisSimilares.contains(p);
 	}
 	
-	public boolean soySimilarAAlgunaDe(List<Pelicula> pelis) {
+	public boolean soySimilarAAlgunaDe(Set<Pelicula> pelis) {
 		return pelis.stream()
 				.anyMatch(p -> this.soySimilarA(p));
 	}
