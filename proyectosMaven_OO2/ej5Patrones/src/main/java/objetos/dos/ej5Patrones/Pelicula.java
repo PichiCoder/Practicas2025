@@ -17,9 +17,9 @@ public class Pelicula {
 		this.pelisSimilares = new ArrayList<Pelicula>();
 	}
 	
-	//Esta bien hacer esto ? me estoy metiendo con la coleccion de otro objeto...
+	//Esto es correcto, evito la recursion y que se agregue la pelicula asi misma
 	public void addPeliculaSimilar(Pelicula p) {
-	    if (!pelisSimilares.contains(p)) {
+	    if (!pelisSimilares.contains(p) && this != p) {
 	        pelisSimilares.add(p);
 	        p.addPeliculaSimilar(this);
 	    }
