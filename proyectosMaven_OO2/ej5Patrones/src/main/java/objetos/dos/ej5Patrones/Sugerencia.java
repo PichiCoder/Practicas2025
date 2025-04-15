@@ -1,8 +1,15 @@
 package objetos.dos.ej5Patrones;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
-public interface Sugerencia {
+public abstract class Sugerencia {
 
-	public List<Pelicula> sugerir3pelis(List<Pelicula> grilla, List<Pelicula> yaVistas);
+	protected List<Pelicula> obtenerPelisNoVistasDeLaGrilla(Decodificador deco) {
+		return deco.getGrillaPeliculas().stream()
+				.filter(p -> !deco.getPeliculasYaReproducidas().contains(p))
+				.collect(Collectors.toList());
+	}
+	
+	public abstract List<Pelicula> sugerir3pelis(Decodificador deco);
 }

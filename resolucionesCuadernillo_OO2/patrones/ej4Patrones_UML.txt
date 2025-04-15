@@ -1,4 +1,6 @@
 @startuml
+/'DUDAS: tema comentarios y workedtime'/
+
 class ToDoItem <<Context>>{
   -name : String
   -comentario : String

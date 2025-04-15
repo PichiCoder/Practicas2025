@@ -1,4 +1,62 @@
 @startuml
 
+/' '/
 
+class Calculadora <<Context>>{
+    -valorAcumulado : Real
+
+    +getResultado() : String 
+    +borrar()
+    +setEstado(e : Estado)
+
+    +setValor(unValor : Real)
+    +mas()
+    +menos()
+    +por()
+    +dividido()
+        
+}
+
+/'Si la calculadora está esperando un valor, 
+y se le envía cualquier otro mensaje, entonces entra en error.
+Solo sale de error si se le envía el mensaje borrar().
+Cuando la calculadora está en error, el mensaje getResultado() retorna el string Error.
+'/
+
+abstract class Estado <<State>>{
+    +handleSetValor(unValor : Real, c : Calculadora)
+    +handleResultado(c : Calculadora) : String
+
+    +handleMas(c : Calculadora)
+    +handleMenos(c : Calculadora)
+    +handlePor(c : Calculadora)
+    +handleDividido(c : Calculadora)
+}
+
+class Inicial <<ConcreteState>> extends Estado {
+
+}
+
+class Error <<ConcreteState>> extends Estado {
+
+}
+
+class Sumando <<ConcreteState>> extends Estado {
+
+}
+
+class Restando <<ConcreteState>> extends Estado {
+
+}
+
+class Multiplicando <<ConcreteState>> extends Estado {
+
+}
+
+/'dividir por 0 retorna error'/
+class Dividiendo <<ConcreteState>> extends Estado {
+
+}
+
+Calculadora --> "operacion 1" Estado
 @enduml

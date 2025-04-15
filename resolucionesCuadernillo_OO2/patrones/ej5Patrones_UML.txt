@@ -3,30 +3,33 @@
 class Decodificador <<Context>>{
 
     +setSugerencia(s : Sugerencia)
-    +sugerir3Peliculas()
-    // return this.sugerencia.sugerir3pelis(....)
+    +sugerir3Peliculas() : String
 }
 
-interface Sugerencia <<Strategy>> {
-    +sugerir3pelis(grilla : Pelicula [*], yaReproducidas : Pelicula [*]) : Pelicula [*]
+abstract class Sugerencia <<Strategy>> {
+    #obtenerPelisNoVistasDeLaGrilla(deco : Decodificador) : Pelicula [*]
+    +sugerir3pelis(deco : Decodificador) : Pelicula [*]
 }
 
-class Novedad <<ConcreteStrategy>> implements Sugerencia {
-    +sugerir3pelis(grilla : Pelicula [*], yaReproducidas : Pelicula [*]) : Pelicula [*]
+class Novedad <<ConcreteStrategy>> extends Sugerencia {
+    +sugerir3pelis(deco : Decodificador) : Pelicula [*]
 }
 
-class Similaridad <<ConcreteStrategy>> implements Sugerencia{
-        +sugerir3pelis(grilla : Pelicula [*], yaReproducidas : Pelicula [*]) : Pelicula [*]
+class Similaridad <<ConcreteStrategy>> extends Sugerencia{
+        +sugerir3pelis(deco : Decodificador) : Pelicula [*]
 }
 
-class Puntaje <<ConcreteStrategy>> implements Sugerencia{
-    +sugerir3pelis(grilla : Pelicula [*], yaReproducidas : Pelicula [*]) : Pelicula [*]
+class Puntaje <<ConcreteStrategy>> extends Sugerencia{
+    +sugerir3pelis(deco : Decodificador) : Pelicula [*]
 }
 
 class Pelicula {
     -título : String
     -añoEstreno : Integer 
     -puntaje : Integer
+
+    +soySimilarA(p : Pelicula) : Boolean
+    +soySimilarAAlgunaDe(pelis : Pelicula [*]) : Boolean
 }
 
 Decodificador --> "grillaDePeliculas *" Pelicula

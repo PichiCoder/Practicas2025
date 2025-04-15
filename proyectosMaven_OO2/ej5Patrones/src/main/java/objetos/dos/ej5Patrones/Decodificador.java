@@ -22,7 +22,6 @@ public class Decodificador {
 	}
 	
 	public void verPelicula(Pelicula p) {
-		//podriamos representa algo que indique que se muestra la pelicula ? (no se pide)
 		this.peliculasYaReproducidas.add(p);
 	}
 	
@@ -32,10 +31,25 @@ public class Decodificador {
 	
 	public String sugerir3Peliculas () {
 	
-		return this.sugerencia.sugerir3pelis(grillaPeliculas, peliculasYaReproducidas)
+		return this.sugerencia.sugerir3pelis(this)
 	               .stream()
 	               .map(p -> p.getTitulo())
 	               .collect(Collectors.joining(", "));
 	}
 
+	public List<Pelicula> getGrillaPeliculas() {
+		return grillaPeliculas;
+	}
+
+	public void setGrillaPeliculas(List<Pelicula> grillaPeliculas) {
+		this.grillaPeliculas = grillaPeliculas;
+	}
+
+	public List<Pelicula> getPeliculasYaReproducidas() {
+		return peliculasYaReproducidas;
+	}
+
+	public void setPeliculasYaReproducidas(List<Pelicula> peliculasYaReproducidas) {
+		this.peliculasYaReproducidas = peliculasYaReproducidas;
+	}
 }

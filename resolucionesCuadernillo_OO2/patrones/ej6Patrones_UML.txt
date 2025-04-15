@@ -1,6 +1,6 @@
 @startuml
 
-/'aun parece que se trata de estados, por como esta la excursion. 
+/'se trata de estados, por como esta la excursion. 
 Provisoria cuando aun no alcanzo cupo minimo 
 Definitiva cuando se alcanzo el minimo '/
 
@@ -14,23 +14,31 @@ class Excursion <<Context>>{
     -cupoMax : Integer
 
     +informacionAcercaDeMi () : String
-        /'retorna lo que devuelva otorgarInformacion(ex : Excursion), que depende del estado'/
+        /'retorna lo que devuelva "this.estado.otorgarInformacion(ex : Excursion)", que depende del estado'/
         
-    +<<create>> Excursion(nom, fI, fF, pE, costo, cMin, cMax)
+    +<<create>> Excursion(nombre : String ... cupoMax : Integer)
 }
 
 abstract class EstadoExcursion <<State>> {
     
-    -informacionBasica(ex : Excursion) : String
-    +<<abstract>> otorgarInformacion(ex : Excursion) : String
+    #informacionBasica(ex : Excursion) : String
+    #<<abstract>>informacionParticularDelEstado(ex : Excursion) : String
+
+    +otorgarInformacion(ex : Excursion) : String
         /'nombre, costo, fechas y punto de encuentro se retornan siempre
-        Entonces se retorna eso con informacionBasica() y el resto lo implementa cada estado'/
+         usando informacionBasica() y el resto lo implementa cada estado'/
 }
+note left of EstadoExcursion::"otorgarInformacion(ex : Excursion)"
+template method
+end note
+
+note left of EstadoExcursion::"informacionParticularDelEstado(ex : Excursion)"
+hook method
+end note
 
 class ExcursionProvisoria <<ConcreteState>> extends EstadoExcursion {
-    +otorgarInformacion(ex : Excursion) : String
-        /'nombre, costo, fechas, punto de encuentro, 
-        cantidad de usuarios faltantes para alcanzar el cupo mínimo.'/
+    -informacionParticularDelEstado(ex : Excursion) : String
+        /' cantidad de usuarios faltantes para alcanzar el cupo mínimo.'/
 }
 
 abstract class ExcursionDefinitiva extends EstadoExcursion{
@@ -39,13 +47,13 @@ abstract class ExcursionDefinitiva extends EstadoExcursion{
 }
 
 class ExcursionDefinitivaCupoCompleto <<ConcreteState>> extends ExcursionDefinitiva {
-    +otorgarInformacion(ex : Excursion) : String
-        /'nombre, costo, fechas y punto de encuentro.'/
+    -informacionParticularDelEstado(ex : Excursion) : String
+        /' vacio porque es igual que lo basico'/
 }
 
 class ExcursionDefinitivaCupoIncompleto <<ConcreteState>> extends ExcursionDefinitiva {
-    +otorgarInformacion(ex : Excursion) : String
-        /'nombre, costo, fechas, punto de encuentro, los mails de los usuarios inscriptos
+    -informacionParticularDelEstado(ex : Excursion) : String
+        /'los mails de los usuarios inscriptos
          y cantidad de usuarios faltantes para alcanzar el cupo máximo.'/
 }
 
@@ -59,7 +67,7 @@ class Usuario {
     
 }
 
-Excursion --> EstadoExcursion
+Excursion --> "estado 1" EstadoExcursion
 Excursion --> "inscriptos *" Usuario
 Excursion --> "listaDeEspera *" Usuario
 @enduml
