@@ -48,25 +48,24 @@ class WifiConn <<ConcreteStrategy>> implements ConnectionStrategy{
     +pict() : String
 }
 
-/' Este Adaptador NO es necesario porque puedo agregarle mensajes a 4GConnection
-class 4gConnectionAdapter <<ConcreteStrategy>> implements ConnectionStrategy{
+/' Este Adaptador tecnicamente NO es necesario segun el enunciado porque puedo agregarle mensajes a 4GConnection. En la vida real, el adaptador va si o si porque
+la clase/libreria que maneja la conexion no la hariamos nosotros.
+'/
+class Connection4GAdapter <<ConcreteStrategy>> implements ConnectionStrategy{
     -pict : String
 
     +sendData(data : String, crc : Integer) : String
     +pict() : String
 }
-'/
 
-class Connection4G <<ConcreteStrategy>> implements ConnectionStrategy {
-    -symb : String
+class Connection4G {
 
     +transmit(data : String, crc : Integer) : String
-    +sendData(data : String, crc : Integer) : String
-    +pict() : String
 }
 
 Dispositivo --> "ringer" Ringer
 Dispositivo --> "display" Display
 Dispositivo --> "crcCalculator" CRCCalculatorStrategy
 Dispositivo --> "connection" ConnectionStrategy
+Connection4GAdapter --> Connection4G
 @enduml
