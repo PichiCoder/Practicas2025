@@ -2,9 +2,11 @@ package objetos.dos.ej4Patrones;
 
 import java.time.Duration;
 import java.time.LocalDate;
+import java.util.List;
 
 public class ToDoItem {
-	private String name, comentario;
+	private String name;
+	private List<String> comentarios;
 	private State state; //private StateInterface state;
 	private LocalDate inicio, fin;
 	
@@ -44,6 +46,6 @@ public class ToDoItem {
 
 	 /* Agrega un comentario al ToDoItem siempre y cuando no haya finalizado. Caso contrario no hace nada." */
 	public void addComment(String comment) {
-		this.comentario = this.state.handleComment(comment);
+		if (this.state.canComment()) comentarios.add(comment);
 	}
 }

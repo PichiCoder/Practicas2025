@@ -1,20 +1,20 @@
 package objetos.dos.ej5Patrones;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Pelicula {
 	private String titulo;
 	private int anioEstreno;
 	private double puntaje;
-	private List<Pelicula> pelisSimilares;
+	private Set<Pelicula> pelisSimilares;
 	
 	public Pelicula(String titulo, double puntaje, int anioEstreno) {
 		super();
 		this.titulo = titulo;
 		this.anioEstreno = anioEstreno;
 		this.puntaje = puntaje;
-		this.pelisSimilares = new ArrayList<Pelicula>();
+		this.pelisSimilares = new HashSet<Pelicula>();
 	}
 	
 	//Esto es correcto, evito la recursion y que se agregue la pelicula asi misma

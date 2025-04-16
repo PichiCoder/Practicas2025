@@ -18,7 +18,7 @@ public class FinishedState extends State{
 	}
 	
 	@Override
-	public String handleComment(String c) {
-		return null;
+	public boolean canComment() {
+		return false;
 	}
 }

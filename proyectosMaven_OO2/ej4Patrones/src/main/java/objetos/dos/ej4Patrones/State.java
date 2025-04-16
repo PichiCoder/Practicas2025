@@ -15,8 +15,8 @@ public abstract class State{
 		return Duration.between(inicio, fin);
 	}
 	
-	public String handleComment(String c) {
-		return c;
+	public boolean canComment() {
+		return true;
 	}
 	
 }
