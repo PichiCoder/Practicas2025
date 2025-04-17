@@ -3,6 +3,8 @@ package tp3;
 import java.util.LinkedList;
 import java.util.List;
 
+import tp1.Queue;
+
 public class GeneralTree<T>{
 
 	private T data;
@@ -89,6 +91,36 @@ public class GeneralTree<T>{
 		
 	}
 	
+	public void porNiveles() {
+		Queue<GeneralTree<T>> cola = new Queue<GeneralTree<T>>();
+		
+		GeneralTree<T> arbol_aux;
+		cola.enqueue(this);
+		cola.enqueue(null);
+		
+		
+		while (!cola.isEmpty()) {
+			arbol_aux = cola.dequeue();
+			
+			if (arbol_aux != null) {
+				
+				System.out.println(arbol_aux.getData());
+				
+				if (arbol_aux.hasChildren()) {
+					for (GeneralTree<T> child: arbol_aux.getChildren()) {
+						cola.enqueue(child);
+					}
+				}
+			}
+			else {
+				if (!cola.isEmpty()) {
+					cola.enqueue(null);
+			
+				}
+			}
+		}
+	}
+	
 	// ====================== ejercicio 3 ======================
 	
 	public int calcAltura(GeneralTree<T> ab) {
@@ -148,7 +180,38 @@ public class GeneralTree<T>{
 
 	// la amplitud (ancho) de un árbol se define como la cantidad de nodos que se encuentran en el nivel que posee la mayor cantidad de nodos.
 	public int ancho(){
+		int amplitud = 0, amplitudNivelActual = 0;
+		Queue<GeneralTree<T>> cola = new Queue<GeneralTree<T>>();
 		
-		return 0;
+		GeneralTree<T> arbol_aux;
+		cola.enqueue(this);
+		cola.enqueue(null);
+		
+		
+		while (!cola.isEmpty()) {
+			arbol_aux = cola.dequeue();
+			
+			if (arbol_aux != null) {
+				
+				if (arbol_aux.hasChildren()) {
+					for (GeneralTree<T> child: arbol_aux.getChildren()) {
+						cola.enqueue(child);
+						amplitudNivelActual++;
+					}
+				}
+			}
+			else {
+				if (!cola.isEmpty()) {
+					cola.enqueue(null);
+					if (amplitudNivelActual > amplitud) 
+						amplitud = amplitudNivelActual;
+					amplitudNivelActual = 0;
+			
+				}
+			}
+		}
+		
+		return amplitud;
 	}
+	
 }

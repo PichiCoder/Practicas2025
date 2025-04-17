@@ -125,9 +125,10 @@ public class ej2RecorridosAG {
 		GeneralTree<Integer> ab1 = aGeneralesEjemplo.aGeneralIntegers_1();
 		GeneralTree<Integer> ab2 = aGeneralesEjemplo.aGeneralIntegers_2();
 		int nro = 31;
-		//ab.preOrder();
-		//ab.postOrder();
-		//ab.inOrder();
+		//ab1.preOrder();
+		//ab1.postOrder();
+		//ab1.inOrder();
+		//ab2.porNiveles();
 		
 		System.out.print("Pre Orden: "); System.out.println(numerosImparesMayoresQuePreOrden(ab2, nro));
 		
@@ -140,8 +141,10 @@ public class ej2RecorridosAG {
 		System.out.print("Altura del arbol: "); System.out.println(ab1.altura());
 		System.out.print("Altura del arbol: "); System.out.println(ab2.altura());
 		System.out.print("Profundidad de " + nro + ": "); System.out.println(ab2.nivel(nro));
-		System.out.print("Profundidad de 2 : "); System.out.println(ab2.nivel(2));
-		System.out.print("Profundidad de 99 : "); System.out.println(ab2.nivel(99));
+		System.out.print("Profundidad de 2: "); System.out.println(ab2.nivel(2));
+		System.out.print("Profundidad de 99: "); System.out.println(ab2.nivel(99));
 		
+		System.out.print("Amplitud del arbol: "); System.out.println(ab2.ancho());
+
 	}
 }
