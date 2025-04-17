@@ -32,11 +32,11 @@ public class ej2RecorridosAG {
 	}
 	
 	// ================================= ================================= =================================  
+	
 	private static void imparesInOrden( GeneralTree <Integer> ab, Integer n, List<Integer> res) {
 		
 		if (ab.hasChildren()) 
-			if (esMayorAnEImpar(ab.getChildren().get(0), n))
-				res.add(ab.getChildren().get(0).getData());
+			imparesInOrden(ab.getChildren().get(0), n, res);
 		
 		if (esMayorAnEImpar(ab, n)) res.add(ab.getData());
 		
@@ -122,19 +122,26 @@ public class ej2RecorridosAG {
 	}
 	
 	public static void main(String [] args) {
-		GeneralTree<Integer> ab = aGeneralesEjemplo.aGeneralIntegers_1();
-		
+		GeneralTree<Integer> ab1 = aGeneralesEjemplo.aGeneralIntegers_1();
+		GeneralTree<Integer> ab2 = aGeneralesEjemplo.aGeneralIntegers_2();
+		int nro = 31;
 		//ab.preOrder();
 		//ab.postOrder();
 		//ab.inOrder();
-		System.out.print("Pre Orden: "); System.out.println(numerosImparesMayoresQuePreOrden(ab, 1));
 		
-		System.out.print("Post Orden: "); System.out.println(numerosImparesMayoresQuePostOrden(ab, 1));
+		System.out.print("Pre Orden: "); System.out.println(numerosImparesMayoresQuePreOrden(ab2, nro));
 		
-		System.out.print("In Orden: "); System.out.println(numerosImparesMayoresQueInOrden(ab, 1));
+		System.out.print("Post Orden: "); System.out.println(numerosImparesMayoresQuePostOrden(ab2, nro));
 		
-		System.out.print("Por niveles: ");  System.out.println(numerosImparesMayoresQuePorNiveles(ab, 1));
+		System.out.print("In Orden: "); System.out.println(numerosImparesMayoresQueInOrden(ab2, nro));
 		
+		System.out.print("Por niveles: ");  System.out.println(numerosImparesMayoresQuePorNiveles(ab2, nro));
+		
+		System.out.print("Altura del arbol: "); System.out.println(ab1.altura());
+		System.out.print("Altura del arbol: "); System.out.println(ab2.altura());
+		System.out.print("Profundidad de " + nro + ": "); System.out.println(ab2.nivel(nro));
+		System.out.print("Profundidad de 2 : "); System.out.println(ab2.nivel(2));
+		System.out.print("Profundidad de 99 : "); System.out.println(ab2.nivel(99));
 		
 	}
 }

@@ -76,36 +76,75 @@ public class GeneralTree<T>{
 		System.out.println(this.getData());
 	}
 	
+
 	public void inOrder () {
-		
-		if (this.hasChildren()) 
-			System.out.println(this.getChildren().get(0).getData());
+			
+		if (this.hasChildren()) this.getChildren().get(0).inOrder();
 		
 		System.out.println(this.getData());
 		
 		for (int i=1; i < this.getChildren().size(); i++) {
-					
 			this.getChildren().get(i).inOrder();
 		}
 		
 	}
 	
 	// ====================== ejercicio 3 ======================
-	// devuelve la altura del árbol, es decir, la longitud del camino más largo desde el nodo raíz hasta una hoja.
-	public int altura() {	 
-		int alt = 1;
+	
+	public int calcAltura(GeneralTree<T> ab) {
+		int miAltura = 0;
 		
-		for (GeneralTree<T> child : this.getChildren()) {
-			return alt += child.altura();
+		if (ab.hasChildren()) miAltura++;
+		
+		for (GeneralTree<T> child : ab.getChildren()) {
+			miAltura += child.altura();
 		}
 		
-		return alt;
+		return miAltura;
+	}
+	
+	// devuelve la altura del árbol, es decir, la longitud del camino más largo desde el nodo raíz hasta una hoja.
+	public int altura() {
+		int miAltura = 0, alturaHijo;
+		
+		if (this.hasChildren()) miAltura++;
+		
+		for (GeneralTree<T> child : this.getChildren()) {
+			alturaHijo = child.altura();
+			if (miAltura <= alturaHijo) miAltura = alturaHijo + 1;
+		}
+		
+		return miAltura;
 	}
 	
 	// devuelve la profundidad o nivel del dato en el árbol. El nivel de un nodo es la longitud del único camino de la raíz al nodo.
-	public int nivel(T dato){
-		return 0;
+	private int buscarDato(T dato, int nivelActual) {
+		int res = -1, aux = -1;
+		
+		if (!this.getData().equals(dato)) {
+			
+			nivelActual++;
+			for (GeneralTree<T> child : this.getChildren()) {
+				res = child.buscarDato(dato, nivelActual);
+				if (res != -1) aux = res;
+			}
+
+		}
+		
+		else {
+			return nivelActual;
+		}
+		
+		return aux;
+		
 	}
+	
+	public int nivel(T dato){
+		if (!this.isEmpty())
+			return buscarDato(dato, 0);
+		return -1;
+	}
+
 
 	// la amplitud (ancho) de un árbol se define como la cantidad de nodos que se encuentran en el nivel que posee la mayor cantidad de nodos.
 	public int ancho(){
