@@ -13,43 +13,43 @@ class Excursion <<Context>>{
     -cupoMin : Integer
     -cupoMax : Integer
 
-    +informacionAcercaDeMi () : String
-        /'retorna lo que devuelva "this.estado.otorgarInformacion(ex : Excursion)", que depende del estado'/
-        
     +<<create>> Excursion(nombre : String ... cupoMax : Integer)
+    +obtenerInformacion() : String
+    -informacionBasica() : String
+    +inscribir(u : Usuario)
+    +mailsInscriptos() : String
+    +addAInscriptos(u : Usuario)
+    +addAEspera(u : Usuario)
+    +setEstado(e : EstadoExcursion)
+    +cantidadInscriptos() : Integer
 }
 
 abstract class EstadoExcursion <<State>> {
-    
-    #informacionBasica(ex : Excursion) : String
-    #<<abstract>>informacionParticularDelEstado(ex : Excursion) : String
+     
+    +<<abstract>>informacionParticularDelEstado(ex : Excursion) : String
+        /'lo implementa cada estado'/
 
-    +otorgarInformacion(ex : Excursion) : String
-        /'nombre, costo, fechas y punto de encuentro se retornan siempre
-         usando informacionBasica() y el resto lo implementa cada estado'/
+    +<<abstract>>handleInscripcion(ex : Excursion, u : Usuario)
 }
-note left of EstadoExcursion::"otorgarInformacion(ex : Excursion)"
-template method
-end note
 
-note left of EstadoExcursion::"informacionParticularDelEstado(ex : Excursion)"
-hook method
-end note
 
 class ExcursionProvisoria <<ConcreteState>> extends EstadoExcursion {
-    -informacionParticularDelEstado(ex : Excursion) : String
+    +informacionParticularDelEstado(ex : Excursion) : String
         /' cantidad de usuarios faltantes para alcanzar el cupo mínimo.'/
+    +handleInscripcion(ex : Excursion, u : Usuario)
 }
 
-class ExcursionDefinitivaCupoCompleto <<ConcreteState>> extends EstadoExcursion {
-    -informacionParticularDelEstado(ex : Excursion) : String
+class EstadoDefinitivaCupoCompleto <<ConcreteState>> extends EstadoExcursion {
+    +informacionParticularDelEstado(ex : Excursion) : String
         /' vacio porque es igual que lo basico'/
+    +handleInscripcion(ex : Excursion, u : Usuario)
 }
 
-class ExcursionDefinitivaCupoIncompleto <<ConcreteState>> extends EstadoExcursion {
-    -informacionParticularDelEstado(ex : Excursion) : String
+class EstadoDefinitivaCupoIncompleto <<ConcreteState>> extends EstadoExcursion {
+    +informacionParticularDelEstado(ex : Excursion) : String
         /'los mails de los usuarios inscriptos
          y cantidad de usuarios faltantes para alcanzar el cupo máximo.'/
+    +handleInscripcion(ex : Excursion, u : Usuario)
 }
 
 class Usuario {
