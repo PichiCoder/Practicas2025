@@ -16,7 +16,7 @@ class AutoEnAlquiler <<Context>> {
     +calcularMontoAReembolsar(r : Reserva) : Real
        /'depende de la politica del auto
          
-         return this.politicaCancelacion.calcularMontoAReembolsar(r.montoAPagar(), r.getFecha())
+         return this.politicaCancelacion.calcularMontoAReembolsar(r : Reserva)
        
        '/
 

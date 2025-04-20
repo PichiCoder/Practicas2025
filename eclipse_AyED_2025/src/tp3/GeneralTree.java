@@ -13,6 +13,7 @@ public class GeneralTree<T>{
 	public GeneralTree() {
 		
 	}
+	
 	public GeneralTree(T data) {
 		this.data = data;
 	}
@@ -121,19 +122,7 @@ public class GeneralTree<T>{
 		}
 	}
 	
-	// ====================== ejercicio 3 ======================
-	
-	public int calcAltura(GeneralTree<T> ab) {
-		int miAltura = 0;
-		
-		if (ab.hasChildren()) miAltura++;
-		
-		for (GeneralTree<T> child : ab.getChildren()) {
-			miAltura += child.altura();
-		}
-		
-		return miAltura;
-	}
+	// ============================================ ejercicio 3 ============================================
 	
 	// devuelve la altura del árbol, es decir, la longitud del camino más largo desde el nodo raíz hasta una hoja.
 	public int altura() {
@@ -149,7 +138,7 @@ public class GeneralTree<T>{
 		return miAltura;
 	}
 	
-	// devuelve la profundidad o nivel del dato en el árbol. El nivel de un nodo es la longitud del único camino de la raíz al nodo.
+	//recurso de nivel(T dato)
 	private int buscarDato(T dato, int nivelActual) {
 		int res = -1, aux = -1;
 		
@@ -171,6 +160,7 @@ public class GeneralTree<T>{
 		
 	}
 	
+	// devuelve la profundidad o nivel del dato en el árbol. El nivel de un nodo es la longitud del único camino de la raíz al nodo.
 	public int nivel(T dato){
 		if (!this.isEmpty())
 			return buscarDato(dato, 0);
@@ -182,36 +172,74 @@ public class GeneralTree<T>{
 	public int ancho(){
 		int amplitud = 0, amplitudNivelActual = 0;
 		Queue<GeneralTree<T>> cola = new Queue<GeneralTree<T>>();
-		
 		GeneralTree<T> arbol_aux;
-		cola.enqueue(this);
-		cola.enqueue(null);
 		
-		
-		while (!cola.isEmpty()) {
-			arbol_aux = cola.dequeue();
+		if (!this.isEmpty()) {
+			cola.enqueue(this);
+			cola.enqueue(null);
 			
-			if (arbol_aux != null) {
+			while (!cola.isEmpty()) {
+				arbol_aux = cola.dequeue();
 				
-				if (arbol_aux.hasChildren()) {
-					for (GeneralTree<T> child: arbol_aux.getChildren()) {
-						cola.enqueue(child);
-						amplitudNivelActual++;
+				if (arbol_aux != null) {
+					amplitudNivelActual++;
+					
+					if (arbol_aux.hasChildren()) {
+						for (GeneralTree<T> child: arbol_aux.getChildren()) {
+							cola.enqueue(child);
+						}
 					}
 				}
-			}
-			else {
-				if (!cola.isEmpty()) {
-					cola.enqueue(null);
-					if (amplitudNivelActual > amplitud) 
-						amplitud = amplitudNivelActual;
-					amplitudNivelActual = 0;
-			
+				else {
+					if (!cola.isEmpty()) {
+						cola.enqueue(null);
+						if (amplitudNivelActual > amplitud) 
+							amplitud = amplitudNivelActual;
+						amplitudNivelActual = 0;
+				
+					}
 				}
 			}
 		}
 		
 		return amplitud;
+	}
+	
+	// ============================================ ejercicio 5 ============================================
+	private GeneralTree<T> buscarNodo(GeneralTree<T> ab, T b) {
+		
+		GeneralTree<T> busqueda = null, aux = null;
+		
+		if (ab.getData() != b) {
+
+			for (GeneralTree<T> child: ab.getChildren()) {
+				busqueda = child.buscarNodo(child, b);
+				if (busqueda != null) aux = busqueda;
+			}
+		}
+		else 
+			return ab;
+		
+		return aux;
+	}
+	
+	
+	//Se dice que un nodo n es ancestro de un nodo m si existe un camino desde n a m. 
+	//Este metodo devuelve true si el valor “a” es ancestro del valor “b”. 
+	public boolean esAncestro(T a, T b) {
+		GeneralTree<T> ancestro = null, sucesor = null;
+				
+		if (!this.isEmpty()) {
+			ancestro = this.buscarNodo(this, a); //empezamos buscando al potencial ancestro desde la raiz.
+			
+			if (ancestro != null && !ancestro.isLeaf())
+				sucesor = this.buscarNodo(ancestro, b); //buscamos al sucesor desde el nodo que deberia ser su ancestro
+			
+			if (sucesor != null) 
+				return true;
+		}
+
+		return false;
 	}
 	
 }

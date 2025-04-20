@@ -130,21 +130,27 @@ public class ej2RecorridosAG {
 		//ab1.inOrder();
 		//ab2.porNiveles();
 		
-		System.out.print("Pre Orden: "); System.out.println(numerosImparesMayoresQuePreOrden(ab2, nro));
+		//System.out.print("Pre Orden: "); System.out.println(numerosImparesMayoresQuePreOrden(ab2, nro));
 		
-		System.out.print("Post Orden: "); System.out.println(numerosImparesMayoresQuePostOrden(ab2, nro));
+		//System.out.print("Post Orden: "); System.out.println(numerosImparesMayoresQuePostOrden(ab2, nro));
 		
-		System.out.print("In Orden: "); System.out.println(numerosImparesMayoresQueInOrden(ab2, nro));
+		//System.out.print("In Orden: "); System.out.println(numerosImparesMayoresQueInOrden(ab2, nro));
 		
-		System.out.print("Por niveles: ");  System.out.println(numerosImparesMayoresQuePorNiveles(ab2, nro));
+		//System.out.print("Por niveles: ");  System.out.println(numerosImparesMayoresQuePorNiveles(ab2, nro));
 		
-		System.out.print("Altura del arbol: "); System.out.println(ab1.altura());
+		//System.out.print("Altura del arbol: "); System.out.println(ab1.altura());
 		System.out.print("Altura del arbol: "); System.out.println(ab2.altura());
 		System.out.print("Profundidad de " + nro + ": "); System.out.println(ab2.nivel(nro));
 		System.out.print("Profundidad de 2: "); System.out.println(ab2.nivel(2));
 		System.out.print("Profundidad de 99: "); System.out.println(ab2.nivel(99));
 		
 		System.out.print("Amplitud del arbol: "); System.out.println(ab2.ancho());
+		
+		System.out.print("Es 3 ancestro de 10 (si): "); System.out.println(ab2.esAncestro(3, 10));
+		System.out.print("Es 3 ancestro de 3 (si): "); System.out.println(ab2.esAncestro(3, 3));
+		System.out.print("Es 2 ancestro de 10 (no): "); System.out.println(ab2.esAncestro(2, 10));
+		System.out.print("Es 0 ancestro de 32 (si): "); System.out.println(ab2.esAncestro(0, 32));
+		
 
 	}
 }
