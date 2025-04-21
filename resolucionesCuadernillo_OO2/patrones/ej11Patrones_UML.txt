@@ -1,0 +1,54 @@
+@startuml
+/' 
+https://docs.google.com/document/d/1rK-ZwQNSjzt7lfvTaTGPRCxSj92hN_QhE0vIYjlyek8/edit?tab=t.0
+'/
+
+/' 
+Tiene que ser patron Composite
+ '/
+
+class Cliente <<Client>>{ 
+    +crearTopografia()
+}
+
+abstract class Topografia <<Component>>{ 
+    
+    +<<abstract>> calcularProporcionDeAgua() : Integer
+    +<<abstract>> agregar(t : Topografia) : Topografia
+    +<<abstract>> eliminar(t : Topografia)
+    +<<abstract>> equals(t : Topografia) : Boolean
+
+    +<<abstract>> obtenerHijo(n: Integer) : Topografia
+        /' esta no se si es necesario '/
+}
+
+class Agua <<Leaf>> extends Topografia  {
+    +calcularProporcionDeAgua() : Integer
+        /' return 1'/
+    +agregar(t : Topografia) : Topografia
+    +eliminar(t : Topografia)
+    +equals(t : Topografia) : Boolean
+}
+
+class Tierra <<Leaf>> extends Topografia  {
+    +calcularProporcionDeAgua() : Integer
+        /' return 0'/
+    +agregar(t : Topografia) : Topografia
+    +eliminar(t : Topografia)
+    +equals(t : Topografia) : Boolean
+}
+
+class Mixta <<Composite>> extends Topografia {
+    +calcularProporcionDeAgua() : Integer
+        /' recorrer componentes, sumando .calcularProporcionDeAgua() de cada uno 
+        y el total se divide por 4'/
+    +agregar(t : Topografia) : Topografia
+    +eliminar(t : Topografia)
+    +equals(t : Topografia) : Boolean
+}
+
+Cliente --> Topografia
+Mixta --> "hijos *" Topografia
+
+
+@enduml

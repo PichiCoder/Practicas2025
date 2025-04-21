@@ -1,0 +1,42 @@
+@startuml
+/' 
+https://docs.google.com/document/d/1rK-ZwQNSjzt7lfvTaTGPRCxSj92hN_QhE0vIYjlyek8/edit?tab=t.0
+'/
+
+/' 
+Si se trata de un builder, supongo que el producto es el mensaje cifrado o descifrado.
+El mensajero seria el Cliente ?
+El MecanismoDeCifrado es el director ?
+El constructor quien seria ? 
+ '/
+
+class Mensajero <<??Cliente??>>{ 
+    
+    +nombre(mensaje : String)
+    +recibir(mensaje : String)
+    +setMecanismoCifrado( mc : MecanismoDeCifrado)
+
+}
+
+abstract class MecanismoDeCifrado <<?Director?>> {
+
+}
+
+class FeistelCipher extends MecanismoDeCifrado {
+    -key : String
+
+    +<<create>> FeistelCipher(key : String)
+    +encode(message : String) : String
+}
+
+class RC4 extends MecanismoDeCifrado {
+    +encrypt(message : String, key : String) : String
+    +decrypt(mensajeCifrado : String, key : String) : String
+}
+
+
+Mensajero --> MecanismoDeCifrado
+
+
+
+@enduml
