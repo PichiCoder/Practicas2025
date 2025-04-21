@@ -125,7 +125,7 @@ public class GeneralTree<T>{
 	// ============================================ ejercicio 3 ============================================
 	
 	// devuelve la altura del árbol, es decir, la longitud del camino más largo desde el nodo raíz hasta una hoja.
-	public int altura() {
+	public int altura_VersionVieja() {
 		int miAltura = 0, alturaHijo;
 		
 		if (this.hasChildren()) miAltura++;
@@ -136,6 +136,19 @@ public class GeneralTree<T>{
 		}
 		
 		return miAltura;
+	}
+
+	public int altura() {
+		int alturaHijo, alturaMaxima = 0;
+		
+		
+		for (GeneralTree<T> child : this.getChildren()) {
+			alturaHijo = child.altura();
+			if (alturaHijo >= alturaMaxima) alturaMaxima = alturaHijo + 1;
+			
+		}
+		
+		return alturaMaxima;
 	}
 	
 	//recurso de nivel(T dato)
