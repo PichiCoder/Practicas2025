@@ -16,6 +16,7 @@ abstract class Topografia <<Component>>{
     +<<abstract>> calcularProporcionDeAgua() : Integer
     +<<abstract>> agregar(t : Topografia) : Topografia
     +<<abstract>> eliminar(t : Topografia)
+        /'solo tiene sentido en el composite'/
     +<<abstract>> equals(t : Topografia) : Boolean
 
     +<<abstract>> obtenerHijo(n: Integer) : Topografia
@@ -33,6 +34,14 @@ class Agua <<Leaf>> extends Topografia  {
 class Tierra <<Leaf>> extends Topografia  {
     +calcularProporcionDeAgua() : Integer
         /' return 0'/
+    +agregar(t : Topografia) : Topografia
+    +eliminar(t : Topografia)
+    +equals(t : Topografia) : Boolean
+}
+
+class Pantano <<Leaf>> extends Topografia  {
+    +calcularProporcionDeAgua() : Integer
+        /' return 0.7'/
     +agregar(t : Topografia) : Topografia
     +eliminar(t : Topografia)
     +equals(t : Topografia) : Boolean
