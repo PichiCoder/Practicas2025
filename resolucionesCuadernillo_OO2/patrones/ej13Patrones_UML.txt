@@ -3,31 +3,15 @@
 https://docs.google.com/document/d/1rK-ZwQNSjzt7lfvTaTGPRCxSj92hN_QhE0vIYjlyek8/edit?tab=t.0
 '/
 
-/' 
-======== DUDAS ====== : de todo xd
- '/
-
-class Cliente <<Client>>{ 
-    -director : DirectorDeSandwichs
-
-    +constructorDeClasico()
-    +constructorDeVegetariano()
-    +constructorDeVegano()
-    +constructorDeSinTacc()
-    
-    +crearDirector(constructor : Constructor) : DirectorDeSandwichs
-}
-
-note left of Cliente 
-    -en la realidad seria la interfaz de usuario
-    -en nuestro caso un Test
-end note
-
 class DirectorDeSandwichs <<Director>>{
     -constructor : Constructor
 
     +<<create>> DirectorDeSandwichs(constructor : Constructor)
     +construirSandwich(constructor : Constructor) : Sandwich
+}
+
+class Sandwich {
+
 }
 
 abstract class ConstructorDeSandwich <<Constructor>>{
@@ -42,8 +26,6 @@ class ConstructorDeClasico <<ConcreteBuilder>> extends ConstructorDeSandwich{
     +construirAderezo() : AderezoMayonesa
     +construirPrincipal() : PrincipalCarneTernera
     +construirAdicional() : AdicionalTomate
-
-    +obtenerSandwich() : SandwichClasico
 }
 
 class ConstructorDeVegetariano <<ConcreteBuilder>> extends ConstructorDeSandwich{
@@ -52,7 +34,6 @@ class ConstructorDeVegetariano <<ConcreteBuilder>> extends ConstructorDeSandwich
     +construirPrincipal() : PrincipalProvoleta
     +construirAdicional() : AdicionalBerenjenasEscabeche
 
-    +obtenerSandwich() : SandwichVegetariano
 }
 
 class ConstructorDeVegano <<ConcreteBuilder>> extends ConstructorDeSandwich{
@@ -60,8 +41,6 @@ class ConstructorDeVegano <<ConcreteBuilder>> extends ConstructorDeSandwich{
     +construirAderezo() : AderezoSalsaCriolla
     +construirPrincipal() : PrincipalMilanesaGirgolas
     +construirAdicional() : AdicionalNULL
-
-    +obtenerSandwich() : SandwichVegano
 }
 
 class ConstructorDeSinTacc <<ConcreteBuilder>> extends ConstructorDeSandwich{
@@ -69,12 +48,9 @@ class ConstructorDeSinTacc <<ConcreteBuilder>> extends ConstructorDeSandwich{
     +construirAderezo() : AderezoSalsaTartara
     +construirPrincipal() : PrincipalCarnePollo
     +construirAdicional() : AdicionalVerdurasGrilladas
-
-    +obtenerSandwich() : SandwichSinTacc
 }
 
 
-Cliente --> DirectorDeSandwichs
 DirectorDeSandwichs --> ConstructorDeSandwich
 
 @enduml
