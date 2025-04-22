@@ -10,33 +10,44 @@ El MecanismoDeCifrado es el director ?
 El constructor quien seria ? 
  '/
 
-class Mensajero <<??Cliente??>>{ 
+class Mensajero <<Context>>{ 
     
-    +nombre(mensaje : String)
+    +enviar(mensaje : String)
     +recibir(mensaje : String)
     +setMecanismoCifrado( mc : MecanismoDeCifrado)
 
 }
 
-abstract class MecanismoDeCifrado <<?Director?>> {
-
+abstract class MecanismoDeCifrado <<Strategy>> {
+    +<<abstract>> encriptar(mensaje : String) : String
+    +<<abstract>> desencriptar(mensaje : String) : String
 }
 
-class FeistelCipher extends MecanismoDeCifrado {
+class FeistelCipherAdapter <<ConcreteStrategy>> extends MecanismoDeCifrado {
+    +encriptar(mensaje : String) : String
+    +desencriptar(mensaje : String) : String
+}
+
+class RC4Adapter <<ConcreteStrategy>> extends MecanismoDeCifrado  {
+    +encriptar(mensaje : String) : String
+    +desencriptar(mensaje : String) : String
+}
+
+class FeistelCipher {
     -key : String
 
     +<<create>> FeistelCipher(key : String)
     +encode(message : String) : String
 }
 
-class RC4 extends MecanismoDeCifrado {
-    +encrypt(message : String, key : String) : String
-    +decrypt(mensajeCifrado : String, key : String) : String
+class RC4 {
+    +encriptar(message : String, key : String) : String
+    +desencriptar(mensajeCifrado : String, key : String) : String
 }
 
 
 Mensajero --> MecanismoDeCifrado
-
-
+FeistelCipherAdapter --> FeistelCipher
+RC4Adapter --> RC4
 
 @enduml

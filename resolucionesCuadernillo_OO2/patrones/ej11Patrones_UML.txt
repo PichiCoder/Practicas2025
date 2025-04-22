@@ -4,60 +4,85 @@ https://docs.google.com/document/d/1rK-ZwQNSjzt7lfvTaTGPRCxSj92hN_QhE0vIYjlyek8/
 '/
 
 /' 
-Tiene que ser patron Composite
+======== DUDA ====== : Como definir el soyIgualAMixta en Mixta ???
  '/
 
 class Cliente <<Client>>{ 
     +crearTopografia()
 }
 
-abstract class Topografia <<Component>>{ 
-    
-    +<<abstract>> calcularProporcionDeAgua() : Integer
-    +<<abstract>> agregar(t : Topografia) : Topografia
-    +<<abstract>> eliminar(t : Topografia)
-        /'solo tiene sentido en el composite'/
-    +<<abstract>> equals(t : Topografia) : Boolean
+note left of Cliente 
+    en nuestro caso seria un Test
+end note
 
-    +<<abstract>> obtenerHijo(n: Integer) : Topografia
-        /' esta no se si es necesario '/
+interface Topografia <<Component>>{ 
+    
+    +calcularProporcionDeAgua() : Integer
+    +calcularProporcionDeTierra() : Integer
+
+    +esIgual(t : Topografia) : Boolean
+
+    +soyIgualAAgua() : Boolean
+    +soyIgualATierra() : Boolean
+    +soyIgualAPantano() : Boolean
+    +soyIgualAMixta(m : Mixta) : Boolean
 }
 
-class Agua <<Leaf>> extends Topografia  {
+class Agua <<Leaf>> implements Topografia  {
     +calcularProporcionDeAgua() : Integer
         /' return 1'/
-    +agregar(t : Topografia) : Topografia
-    +eliminar(t : Topografia)
-    +equals(t : Topografia) : Boolean
+    +calcularProporcionDeTierra() : Integer
+        /' return 0'/
+    +esIgual(t : Topografia) : Boolean
+
+    +soyIgualAAgua() : Boolean
+    +soyIgualATierra() : Boolean
+    +soyIgualAPantano() : Boolean
+    +soyIgualAMixta(m : Mixta) : Boolean
 }
 
-class Tierra <<Leaf>> extends Topografia  {
+class Tierra <<Leaf>> implements Topografia  {
     +calcularProporcionDeAgua() : Integer
         /' return 0'/
-    +agregar(t : Topografia) : Topografia
-    +eliminar(t : Topografia)
-    +equals(t : Topografia) : Boolean
+    +calcularProporcionDeTierra() : Integer
+        /' return 1'/
+    +esIgual(t : Topografia) : Boolean
+
+    +soyIgualAAgua() : Boolean
+    +soyIgualATierra() : Boolean
+    +soyIgualAPantano() : Boolean
+    +soyIgualAMixta(m : Mixta) : Boolean
 }
 
-class Pantano <<Leaf>> extends Topografia  {
+class Pantano <<Leaf>> implements Topografia  {
     +calcularProporcionDeAgua() : Integer
         /' return 0.7'/
-    +agregar(t : Topografia) : Topografia
-    +eliminar(t : Topografia)
-    +equals(t : Topografia) : Boolean
+    +calcularProporcionDeTierra() : Integer
+        /' return 0.3'/
+    +esIgual(t : Topografia) : Boolean
+
+    +soyIgualAAgua() : Boolean
+    +soyIgualATierra() : Boolean
+    +soyIgualAPantano() : Boolean
+    +soyIgualAMixta(m : Mixta) : Boolean
 }
 
-class Mixta <<Composite>> extends Topografia {
+class Mixta <<Composite>> implements Topografia {
     +calcularProporcionDeAgua() : Integer
         /' recorrer componentes, sumando .calcularProporcionDeAgua() de cada uno 
         y el total se divide por 4'/
-    +agregar(t : Topografia) : Topografia
-    +eliminar(t : Topografia)
-    +equals(t : Topografia) : Boolean
+    +calcularProporcionDeTierra() : Integer
+        /' return 0.3'/
+    +esIgual(t : Topografia) : Boolean
+
+    +soyIgualAAgua() : Boolean
+    +soyIgualATierra() : Boolean
+    +soyIgualAPantano() : Boolean
+    +soyIgualAMixta(m : Mixta) : Boolean
 }
 
 Cliente --> Topografia
-Mixta --> "hijos *" Topografia
+Mixta --> "hijos 4" Topografia
 
 
 @enduml
