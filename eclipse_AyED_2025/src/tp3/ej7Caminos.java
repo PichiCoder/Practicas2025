@@ -7,6 +7,11 @@ public class ej7Caminos {
 
 	GeneralTree<Integer> arbol;
 	
+	public ej7Caminos(GeneralTree<Integer> arbol) {
+		super();
+		this.arbol = arbol;
+	}
+
 	private void encontrarCamino(GeneralTree<Integer> ab, List<Integer> caminoMaximo, List<Integer> caminoActual) {
 		
 		caminoActual.add(ab.getData());
@@ -20,7 +25,7 @@ public class ej7Caminos {
 				caminoMaximo.addAll(caminoActual);
 			}
 			
-			caminoActual.remove(caminoActual.size() - 1);
+			caminoActual.remove(caminoActual.size() - 1); // se remueve el ultimo agregado
 			
 		}
 		
@@ -28,12 +33,20 @@ public class ej7Caminos {
 	
 	public List<Integer> caminoAHojaMasLejana () {
 		
-		List<Integer> caminoResultado = new ArrayList<Integer>();
+		List<Integer> caminoMaximo = new ArrayList<Integer>();
 		List<Integer> caminoAux = new ArrayList<Integer>();
 		
-		encontrarCamino(arbol, caminoResultado, caminoAux);
+		if (arbol != null && !arbol.isEmpty())
+			encontrarCamino(arbol, caminoMaximo, caminoAux);
 		
-		return caminoResultado;
+		return caminoMaximo;
+	}
+	
+	public static void main (String [] args) {
+		GeneralTree<Integer> ab = aGeneralesEjemplo.aGeneralIntegers_2();
 		
+		ej7Caminos test = new ej7Caminos(ab);
+		
+		System.out.println(test.caminoAHojaMasLejana());
 	}
 }

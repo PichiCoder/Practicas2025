@@ -141,7 +141,6 @@ public class GeneralTree<T>{
 	public int altura() {
 		int alturaHijo, alturaMaxima = 0;
 		
-		
 		for (GeneralTree<T> child : this.getChildren()) {
 			alturaHijo = child.altura();
 			if (alturaHijo >= alturaMaxima) alturaMaxima = alturaHijo + 1;
