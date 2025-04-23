@@ -17,7 +17,7 @@ public class ConstructorDeVegano implements ConstructorDeSandwich {
 
 	@Override
 	public void construirAderezo(Sandwich s) {
-		Aderezo ad = new Aderezo("Salsa Criolla", 0);
+		Aderezo ad = new Aderezo("Salsa Criolla", 20.0);
 		s.addElemento(ad);
 
 	}

@@ -11,6 +11,7 @@ class DirectorDeSandwichs <<Director>>{
 
 class Sandwich {
     +addElemento(e : Elemento)
+    +calcularPrecio() : Real
 }
 
 abstract class Elemento {
