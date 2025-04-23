@@ -18,17 +18,20 @@ class Mensajero <<Context>>{
 
 }
 
-abstract class MecanismoDeCifrado <<Strategy>> {
-    +<<abstract>> encriptar(mensaje : String) : String
-    +<<abstract>> desencriptar(mensaje : String) : String
-}
+interface MecanismoDeCifrado <<Strategy>> {
 
-class FeistelCipherAdapter <<ConcreteStrategy>> extends MecanismoDeCifrado {
     +encriptar(mensaje : String) : String
     +desencriptar(mensaje : String) : String
 }
 
-class RC4Adapter <<ConcreteStrategy>> extends MecanismoDeCifrado  {
+class FeistelCipherAdapter <<ConcreteStrategy>> implements MecanismoDeCifrado {
+    +<<create>> FeistelCipherAdapter (key : String)
+    +encriptar(mensaje : String) : String
+    +desencriptar(mensaje : String) : String
+}
+
+class RC4Adapter <<ConcreteStrategy>> implements MecanismoDeCifrado  {
+    +<<create>> RC4Adapter (key : String)
     +encriptar(mensaje : String) : String
     +desencriptar(mensaje : String) : String
 }

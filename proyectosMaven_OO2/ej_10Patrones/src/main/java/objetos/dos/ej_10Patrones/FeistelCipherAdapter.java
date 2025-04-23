@@ -1,19 +1,22 @@
 package objetos.dos.ej_10Patrones;
 
-public class FeistelCipherAdapter extends MecanismoDeCifrado {
-	String key;
+public class FeistelCipherAdapter implements MecanismoDeCifrado {
+	FeistelCipher fc;
 
-	
+	public FeistelCipherAdapter(String key) {
+		fc = new FeistelCipher(key);
+	}
+
 	@Override
 	public String encriptar(String msj) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return fc.encode(msj);
 	}
 
 	@Override
 	public String desencriptar(String msj) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return fc.encode(msj);
 	}
 
 }

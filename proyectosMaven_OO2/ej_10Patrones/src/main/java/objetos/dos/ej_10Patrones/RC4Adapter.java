@@ -1,23 +1,32 @@
 package objetos.dos.ej_10Patrones;
 
-public class RC4Adapter extends MecanismoDeCifrado {
+//faltaria el el constructor
+// No darle mucha bola a "de donde sale la key". Se puede hacer un getKey() ponele y fue.
+// Igualmente la clase que viene puedo preguntarle devuelta por las dudas.
 
+public class RC4Adapter implements MecanismoDeCifrado {
 
-	//faltaria el el constructor
-	// No darle mucha bola a "de donde sale la key". Se puede hacer un getKey() ponele y fue.
-	// Igualmente la clase que viene puedo preguntarle devuelta por las dudas.
+	RC4 rc4;
+	String key;
+	
+	public RC4Adapter(String key) {
+		RC4 rc4 = new RC4();
+		this.key = key;
+	}
+	
 	@Override
 	public String encriptar(String msj) {
-		RC4 rc4 = new RC4();
 		
-		String key = "De donde sale esta key?";
-		
-		return rc4.encriptar(msj, key);
+		return rc4.encriptar(msj, this.getKey());
 	}
 
 	@Override
 	public String desencriptar(String msj) {
 		// TODO Auto-generated method stub
-		return null;
+		return rc4.desencriptar(msj, this.getKey());
+	}
+	
+	public String getKey() {
+		return this.key;
 	}
 }
