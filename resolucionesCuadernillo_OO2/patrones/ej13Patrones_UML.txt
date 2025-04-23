@@ -4,53 +4,76 @@ https://docs.google.com/document/d/1rK-ZwQNSjzt7lfvTaTGPRCxSj92hN_QhE0vIYjlyek8/
 '/
 
 class DirectorDeSandwichs <<Director>>{
-    -constructor : Constructor
 
     +<<create>> DirectorDeSandwichs(constructor : Constructor)
     +construirSandwich(constructor : Constructor) : Sandwich
 }
 
 class Sandwich {
+    +addElemento(e : Elemento)
+}
+
+abstract class Elemento {
+    -nombre : String
+    -precio : Real
+    +<<create>>Elemento(nombre : String, precio : Real)
+}
+
+class Pan extends Elemento{
+    +<<create>> Pan(nombre : String, precio : Real)
+}
+
+class Aderezo extends Elemento{
+    +<<create>> Aderezo(nombre : String, precio : Real)
+}
+
+class Principal extends Elemento{
+    +<<create>> Principal(nombre : String, precio : Real)
+}
+
+class Adicional extends Elemento{
+    +<<create>> Adicional(nombre : String, precio : Real)
+}
+
+interface ConstructorDeSandwich <<Builder>>{
+    +construirPan(Sandwich s)
+    +construirAderezo(Sandwich s)
+    +construirPrincipal(Sandwich s)
+    +construirAdicional(Sandwich s)
+}
+
+class ConstructorDeClasico <<ConcreteBuilder>> implements ConstructorDeSandwich{
+    +construirPan(Sandwich s)
+    +construirAderezo(Sandwich s)
+    +construirPrincipal(Sandwich s)
+    +construirAdicional(Sandwich s)
+}
+
+class ConstructorDeVegetariano <<ConcreteBuilder>> implements ConstructorDeSandwich{
+    +construirPan(Sandwich s)
+    +construirAderezo(Sandwich s)
+    +construirPrincipal(Sandwich s)
+    +construirAdicional(Sandwich s)
 
 }
 
-abstract class ConstructorDeSandwich <<Constructor>>{
-    +<<abstract>> construirPan() : Pan
-    +<<abstract>> construirAderezo() : Aderezo
-    +<<abstract>> construirPrincipal() : Principal
-    +<<abstract>> construirAdicional() : Adicional
+class ConstructorDeVegano <<ConcreteBuilder>> implements ConstructorDeSandwich{
+    +construirPan(Sandwich s)
+    +construirAderezo(Sandwich s)
+    +construirPrincipal(Sandwich s)
+    +construirAdicional(Sandwich s)
 }
 
-class ConstructorDeClasico <<ConcreteBuilder>> extends ConstructorDeSandwich{
-    +construirPan() : PanBrioche
-    +construirAderezo() : AderezoMayonesa
-    +construirPrincipal() : PrincipalCarneTernera
-    +construirAdicional() : AdicionalTomate
-}
-
-class ConstructorDeVegetariano <<ConcreteBuilder>> extends ConstructorDeSandwich{
-    +construirPan() : PanSemiilas
-    +construirAderezo() : AderezoNULL
-    +construirPrincipal() : PrincipalProvoleta
-    +construirAdicional() : AdicionalBerenjenasEscabeche
-
-}
-
-class ConstructorDeVegano <<ConcreteBuilder>> extends ConstructorDeSandwich{
-    +construirPan() : PanIntegral
-    +construirAderezo() : AderezoSalsaCriolla
-    +construirPrincipal() : PrincipalMilanesaGirgolas
-    +construirAdicional() : AdicionalNULL
-}
-
-class ConstructorDeSinTacc <<ConcreteBuilder>> extends ConstructorDeSandwich{
-    +construirPan() : PanChipa
-    +construirAderezo() : AderezoSalsaTartara
-    +construirPrincipal() : PrincipalCarnePollo
-    +construirAdicional() : AdicionalVerdurasGrilladas
+class ConstructorDeSinTacc <<ConcreteBuilder>> implements ConstructorDeSandwich{
+    +construirPan(Sandwich s)
+    +construirAderezo(Sandwich s)
+    +construirPrincipal(Sandwich s)
+    +construirAdicional(Sandwich s)
 }
 
 
 DirectorDeSandwichs --> ConstructorDeSandwich
+Sandwich --> "2..4" Elemento
+DirectorDeSandwichs -.-.> Sandwich
 
 @enduml
