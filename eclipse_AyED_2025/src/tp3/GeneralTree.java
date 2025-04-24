@@ -105,7 +105,7 @@ public class GeneralTree<T>{
 			
 			if (arbol_aux != null) {
 				
-				System.out.println(arbol_aux.getData());
+				System.out.print(arbol_aux.getData() + "  ");
 				
 				if (arbol_aux.hasChildren()) {
 					for (GeneralTree<T> child: arbol_aux.getChildren()) {
@@ -116,6 +116,7 @@ public class GeneralTree<T>{
 			else {
 				if (!cola.isEmpty()) {
 					cola.enqueue(null);
+					System.out.println();
 			
 				}
 			}

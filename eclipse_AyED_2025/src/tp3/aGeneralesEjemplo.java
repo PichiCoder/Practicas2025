@@ -78,4 +78,87 @@ public class aGeneralesEjemplo {
 
 		return a;
 	}
+	
+	/*					  				0
+	 * 				/	  /		    		|			\		\
+	 * 			  1	      2			 		3  			4		5
+	 * 				  /   |   \		 	/    \   \   \
+	 * 				21   22   23 		31    32  33  34
+	 * 							  	  /  |  \
+	 * 							 	10  15  99
+	 */
+	public static GeneralTree<Integer> aGeneralAbeto () {
+		
+		List<GeneralTree<Integer>> children = new LinkedList<GeneralTree<Integer>>();
+		GeneralTree<Integer> a = new GeneralTree<Integer>(0, children);
+
+		GeneralTree<Integer> h1 = new GeneralTree<Integer>(1);
+		
+		List<GeneralTree<Integer>> children2 = new LinkedList<GeneralTree<Integer>>();
+		GeneralTree<Integer> h2 = new GeneralTree<Integer>(2, children2);
+		
+		List<GeneralTree<Integer>> children3 = new LinkedList<GeneralTree<Integer>>();
+		GeneralTree<Integer> h3 = new GeneralTree<Integer>(3, children3);
+		
+		children.add(h1);children.add(h2);children.add(h3);
+		children.add(new GeneralTree<Integer>(4));
+		children.add(new GeneralTree<Integer>(5));
+		
+		List<GeneralTree<Integer>> children31 = new LinkedList<GeneralTree<Integer>>();
+		GeneralTree<Integer> h31 = new GeneralTree<Integer>(31, children31);
+		children31.add(new GeneralTree<Integer>(10));
+		children31.add(new GeneralTree<Integer>(15));
+		children31.add(new GeneralTree<Integer>(99));
+		
+		children2.add(new GeneralTree<Integer>(21));
+		children2.add(new GeneralTree<Integer>(22));
+		children2.add(new GeneralTree<Integer>(23));
+		
+		children3.add(h31);
+		children3.add(new GeneralTree<Integer>(32));
+		children3.add(new GeneralTree<Integer>(33));
+		children3.add(new GeneralTree<Integer>(34));
+
+		return a;
+	}
+	
+	
+	/*					  0
+	 * 				/	  |		  \
+	 * 			  1	      2		   0
+	 * 				  /   |   \		 |    \
+	 * 				2   22   23 	 0    32
+	 * 							  /  |  \
+	 * 							 10  15  0
+	 */
+	public static GeneralTree<Integer> aDeSeleccion () {
+		
+		List<GeneralTree<Integer>> children = new LinkedList<GeneralTree<Integer>>();
+		GeneralTree<Integer> a = new GeneralTree<Integer>(0, children);
+
+		GeneralTree<Integer> h1 = new GeneralTree<Integer>(1);
+		
+		List<GeneralTree<Integer>> children2 = new LinkedList<GeneralTree<Integer>>();
+		GeneralTree<Integer> h2 = new GeneralTree<Integer>(2, children2);
+		
+		List<GeneralTree<Integer>> children3 = new LinkedList<GeneralTree<Integer>>();
+		GeneralTree<Integer> h3 = new GeneralTree<Integer>(0, children3);
+		
+		children.add(h1);children.add(h2);children.add(h3);
+		
+		List<GeneralTree<Integer>> children31 = new LinkedList<GeneralTree<Integer>>();
+		GeneralTree<Integer> h31 = new GeneralTree<Integer>(0, children31);
+		children31.add(new GeneralTree<Integer>(10));
+		children31.add(new GeneralTree<Integer>(15));
+		children31.add(new GeneralTree<Integer>(0));
+		
+		children2.add(new GeneralTree<Integer>(2));
+		children2.add(new GeneralTree<Integer>(22));
+		children2.add(new GeneralTree<Integer>(23));
+		
+		children3.add(h31);
+		children3.add(new GeneralTree<Integer>(32));
+
+		return a;
+	}
 }
