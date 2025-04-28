@@ -3,7 +3,6 @@ package tp3;
 import java.util.Iterator;
 
 public class ej9_ParcialArboles {
-
 	
 	private static boolean comprobarSiEsDeSeleccion (GeneralTree<Integer> arbol) {
 		boolean cumplo = true;
