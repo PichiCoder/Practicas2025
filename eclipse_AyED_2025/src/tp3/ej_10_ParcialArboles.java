@@ -25,7 +25,7 @@ public class ej_10_ParcialArboles {
 			caminoAct.clear()
 	 */
 	
-	private static void obtenerCaminoMaxFiltrado (GeneralTree<Integer> ab, List<Integer> caminoAct, List<Integer> caminoMax, int nivel, int sumaAct, int sumaMax) {
+	private static void obtenerCaminoMaxFiltrado_Viejo (GeneralTree<Integer> ab, List<Integer> caminoAct, List<Integer> caminoMax, int nivel, int sumaAct, int sumaMax) {
 		
 		if (ab.getData() == 1) {
 			sumaAct += ab.getData() * nivel;
@@ -53,16 +53,57 @@ public class ej_10_ParcialArboles {
 		
 	}
 	
-	public static List<Integer> resolver(GeneralTree<Integer> arbol) {
+	public static List<Integer> resolver_Viejo(GeneralTree<Integer> arbol) {
 		
 		List<Integer> caminoFiltradoMaximo = new LinkedList<Integer>();
 		
 		if (arbol != null && !arbol.isEmpty())
-			obtenerCaminoMaxFiltrado(arbol, new LinkedList<Integer>(), caminoFiltradoMaximo, 0, 0, 0);
+			obtenerCaminoMaxFiltrado_Viejo(arbol, new LinkedList<Integer>(), caminoFiltradoMaximo, 0, 0, 0);
 		
 		return caminoFiltradoMaximo;
 			
 		
+	}
+
+	private static void obtenerCaminoMaxFiltrado (GeneralTree<Integer> ab, List<Integer> caminoAct, List<Integer> caminoMax, int nivel, int sumaAct, guardarSuma sumaMax) {
+		
+		if (ab.getData() == 1) {
+			sumaAct += ab.getData() * nivel; 
+			caminoAct.add(ab.getData());
+		}
+		
+		for (GeneralTree<Integer> child : ab.getChildren()) {
+			nivel++;
+			obtenerCaminoMaxFiltrado(child, caminoAct, caminoMax, nivel, sumaAct, sumaMax);
+			
+			if (sumaAct > sumaMax.getSuma()) {
+				caminoMax.clear();
+				caminoMax.addAll(caminoAct);
+				sumaMax.setSuma(sumaAct);
+			}
+			
+		}
+		
+		if (ab.getData() == 1) {
+			caminoAct.remove(caminoAct.size() - 1); //porque solo lo agregue a lista si contenia 1
+			
+		}
+				
+	}
+	
+
+	
+	public static List<Integer> resolver(GeneralTree<Integer> arbol) {
+		
+		List<Integer> caminoFiltradoMaximo = new LinkedList<Integer>();
+		
+		guardarSuma sumaMax = new guardarSuma();
+		
+		if (arbol != null && !arbol.isEmpty())
+			obtenerCaminoMaxFiltrado(arbol, new LinkedList<Integer>(), caminoFiltradoMaximo, 0, 0, sumaMax);
+		
+		return caminoFiltradoMaximo;
+				
 	}
 	
 }
