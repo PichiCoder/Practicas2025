@@ -11,8 +11,10 @@ public class ej8Navidad {
 		super();
 		this.ab = ab;
 	}
-	
-	private boolean recorrido (GeneralTree <Integer> a) {
+
+	//Esto es incorrecto, preguntar por el valor de los hijos es estar recorriendo. 
+	//Entonces estamos recorriendo dos veces
+	private boolean recorrido_Version_Viejas (GeneralTree <Integer> a) {
 		int cantHojas = 0;
 		boolean soyAbeto = true;
 		
@@ -30,6 +32,29 @@ public class ej8Navidad {
 		}
 		
 		return soyAbeto;
+
+	}
+
+	private boolean recorrido (GeneralTree <Integer> a) {
+		int cantHojas = 0;
+		boolean esAbeto = true;
+		
+		if (a.isLeaf())
+			return true;
+
+		Iterator<GeneralTree<Integer>> it = a.getChildren().iterator();
+		
+		while (esAbeto && it.hasNext()) {
+			GeneralTree<Integer> nodo = it.next();
+			esAbeto = this.recorrido(nodo);
+			if (esAbeto) cantHojas++;
+			
+		}
+		
+		if (cantHojas < 3) 
+			return false;
+		
+		return esAbeto;
 
 	}
 	
