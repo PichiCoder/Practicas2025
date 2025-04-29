@@ -16,5 +16,8 @@ public class DirectorDeSandwichs {
 		
 		return s;
 	}
+
+	//Tambien podria pasarse el constructor por parametro para construir el director y despues usar un director para cada sandiwch que se quiere construir o meter un setter que te cambie el constructor guardado.
+
 	
 }
