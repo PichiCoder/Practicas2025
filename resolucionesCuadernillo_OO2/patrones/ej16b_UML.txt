@@ -1,0 +1,91 @@
+@startuml
+
+/'
+================== Preguntas ================
+Evalúe cuál de los siguientes patrones mejor describe el diseño de los Pipes: 
+TemplateMethod, Strategy, Decorator. 
+
+a. ¿El objetivo del patrón se distingue en el diseño?
+
+Parece un Decorator
+
+b. ¿La estructura del proyecto coincide con la estructura y los participantes del patrón? Elabore en un párrafo.
+
+ImageFilter seria el Componente.
+ImageFilterPipe el Componente Concreto.
+AbstractFilter seria el Decorador y sus subclases los decoradores concretos.
+
+
+c. En el caso que el patrón coincida, puede distinguir un “smell” o algo que se aleja del patrón presentado en el libro?
+
+
+'/
+
+
+class PNGFilterLauncher {
+    -filters : Map
+    -inputFile : File
+    -outputFile : File 
+
+    +initializeFilters()
+    +processArgs(args : String[*] )
+    +main(args : String[*])
+    +getRainbowArtifactPipe() : ImageFilter
+    +getMonoArtifactPipe() : ImageFilter
+}
+
+interface ImageFilter {
+    +filter(image : BufferedImage) : BufferedImage
+}
+
+interface ImageFilterPipeInterface {
+    +filter(image : BufferedImage) : BufferedImage
+    +addFilter(next : ImageFilter)
+    +setNextPipe(newPipe : ImageFilterPipe )
+    +addPipeFrom(newPipe ImageFilterPipe, aPipe ImageFilterPipe)
+}
+
+class ImageFilterPipe implements ImageFilterPipeInterface {
+
+    +filter(image : BufferedImage) : BufferedImage
+    +addFilter(next : ImageFilter)
+    +setNextPipe(newPipe : ImageFilterPipe )
+    +addPipeFrom(newPipe ImageFilterPipe, aPipe ImageFilterPipe)
+}
+
+abstract class AbstractFilter implements ImageFilter{
+    +<<abstract>> filter(image : BufferedImage) : BufferedImage
+}
+
+class Artifacter extends AbstractFilter {
+    +filter(image : BufferedImage) : BufferedImage
+}
+
+class Rainbow extends AbstractFilter {
+    +filter(image : BufferedImage) : BufferedImage
+}
+
+class Repeater extends AbstractFilter {
+    +filter(image : BufferedImage) : BufferedImage
+}
+
+class RGBShifter extends AbstractFilter {
+    +filter(image : BufferedImage) : BufferedImage
+}
+
+class RGBShiftRepeater extends AbstractFilter {
+    +filter(image : BufferedImage) : BufferedImage
+}
+
+class Monochrome extends AbstractFilter {
+    +filter(image : BufferedImage) : BufferedImage
+}
+
+PNGFilterLauncher --> "activeFilters *" ImageFilter
+
+ImageFilterPipe --> "filter" ImageFilter
+ImageFilterPipe --> ImageFilterPipeInterface
+
+ImageFilterPipeInterface -.-|> ImageFilter
+
+@enduml

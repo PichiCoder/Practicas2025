@@ -1,0 +1,76 @@
+@startuml
+
+/'
+================== DUDAS ================
+
+El map no se como se representaria en el UML
+
+====== Respondiendo a las preguntas: ==========
+
+Parece que se usa algo parecido a un Decorator
+
+a. ¿El objetivo del patrón se distingue en el diseño?
+Si es solo por el UML no lo tengo clarisimo. Me doy cuenta viendo el codigo.
+
+b. ¿La estructura del proyecto coincide con la estructura y los participantes del patrón?
+No, porque deberia haber una interfaz comun que implementen el File y el Filter.
+Aca el file, la imagen, es ajena a los filtros que se le aplican.
+
+c. En el caso que el patrón coincida, puede distinguir un “smell” o algo que se aleja del patrón presentado en el libro?
+Lo mas alejado es lo que comente antes.
+
+================== Agregar Monochrome ================
+1. Cree la clase, que hereda de filter.
+2. Mapearla en la clase PNGFilterLauncher, en el metodo initializeFilters
+    ...
+    filters.put("--monochrome", new Monochrome());
+3. testeo con los run parameters como "img/foto.png img/output.png --monochrome"
+Funciona
+
+Con esto se ve que no es un codigo muy escalable, practico, 
+tengo que tocar codigo de un metodo que ya estaba definido.
+
+'/
+
+
+class PNGFilterLauncher {
+    -filters : Map
+    -inputFile : File
+    -outputFile : File 
+
+    +initializeFilters()
+    +processArgs(args : String[*] )
+    +main(args : String[*])
+}
+
+abstract class Filter {
+    +<<abstract>> filter(image : BufferedImage) : BufferedImage
+}
+
+class Artifacter extends Filter {
+    +filter(image : BufferedImage) : BufferedImage
+}
+
+class Rainbow extends Filter {
+    +filter(image : BufferedImage) : BufferedImage
+}
+
+class Repeater extends Filter {
+    +filter(image : BufferedImage) : BufferedImage
+}
+
+class RGBShifter extends Filter {
+    +filter(image : BufferedImage) : BufferedImage
+}
+
+class RGBShiftRepeater extends Filter {
+    +filter(image : BufferedImage) : BufferedImage
+}
+
+class Monochrome extends Filter {
+    +filter(image : BufferedImage) : BufferedImage
+}
+
+PNGFilterLauncher --> "activeFilters *" Filter
+
+@enduml

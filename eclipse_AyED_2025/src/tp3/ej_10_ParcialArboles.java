@@ -34,7 +34,7 @@ public class ej_10_ParcialArboles {
 		
 		for (GeneralTree<Integer> child : ab.getChildren()) {
 			nivel++;
-			obtenerCaminoMaxFiltrado(child, caminoAct, caminoMax, nivel, sumaAct, sumaMax);
+			obtenerCaminoMaxFiltrado_Viejo(child, caminoAct, caminoMax, nivel, sumaAct, sumaMax);
 			
 			if (sumaAct > sumaMax) {
 				caminoMax.clear();
