@@ -30,7 +30,7 @@ public class DatabaseAccessProxy implements DatabaseAccess{
 		if (logged) 
 			return this.dba.insertNewRow(rowData);
 		
-		return (Integer) null; //Esto es raro, pero sin el casteo no me deja retornar null
+		return -1;
 	}
 
 }
