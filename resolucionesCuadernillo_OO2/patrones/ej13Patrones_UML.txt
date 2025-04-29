@@ -6,7 +6,7 @@ https://docs.google.com/document/d/1rK-ZwQNSjzt7lfvTaTGPRCxSj92hN_QhE0vIYjlyek8/
 class DirectorDeSandwichs <<Director>>{
 
     +<<create>> DirectorDeSandwichs(constructor : Constructor)
-    +construirSandwich(constructor : Constructor) : Sandwich
+    +construirSandwich() : Sandwich
 }
 
 class Sandwich {
