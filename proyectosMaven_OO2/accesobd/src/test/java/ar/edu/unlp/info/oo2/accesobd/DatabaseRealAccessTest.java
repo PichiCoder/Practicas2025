@@ -53,8 +53,8 @@ public class DatabaseRealAccessTest {
     
 	@Test
     void testInsertNewRow_PROXY_NOT_Logged() {
-
-        assertNull(this.proxyDB.insertNewRow(Arrays.asList("Patoruzú", "La flor")));
+        
+        assertEquals(-1, this.proxyDB.insertNewRow(Arrays.asList("Patoruzú", "La flor")));
         assertNull(this.proxyDB.getSearchResults("select * from comics where id=3"));
     }
     
