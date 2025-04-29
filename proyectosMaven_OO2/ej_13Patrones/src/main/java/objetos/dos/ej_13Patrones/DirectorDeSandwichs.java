@@ -1,5 +1,7 @@
 package objetos.dos.ej_13Patrones;
 
+/* Nota gral de este EJERCICIO. No es necesario crear los objetos Pan, principal, aderezo, adicional. Basta con definirlo con un String en el objeto Elemento*/
+
 public class DirectorDeSandwichs {
 
 	public DirectorDeSandwichs() {
