@@ -8,10 +8,15 @@ public abstract class FileDecorator implements File {
 		this.archivo = archivo;
 	}
 
-	@Override
-	public String prettyPrint() {
+	public abstract String specificPrettyPrint();
+	
+	public String prettyPrintBasico() {
 		// TODO Auto-generated method stub
-		return archivo.prettyPrint() + " ";
+		return archivo.prettyPrint() + " " + this.specificPrettyPrint();
+	}
+	
+	public String prettyPrint() {
+		return prettyPrintBasico().strip();
 	}
 
 	@Override
