@@ -35,7 +35,7 @@ class AdapterHomeWeatherStation <<Adapter>> <<? Concrete Component ?>> implement
     +displayData() : String
     +setUnidadTemperatura(unidad : TempStrategy)
     +getTemperatura() : Real
-      return this.strategy.calcularTemperatura(this.adaptee.getTemperatura());
+      /'return this.strategy.calcularTemperatura(this.adaptee.getTemperatura()); '/
 }
 
 interface TempStrategy <<Strategy>> {
