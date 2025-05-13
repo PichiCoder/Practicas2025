@@ -1,13 +1,16 @@
 @startuml
-/' Puede ser que sea un builder ? 
-Por un lado se construye el personaje, el tipo de pj es un BuilderConcreto , y lo mismo con las armas ?
+/' 
+Puede ser que sea un builder ? Ni, hasta ahora no es necesario.
+Habilidad no influye en nada ni se planifica para el futuro.
 '/
 
 abstract class Personaje {
   -nombre : String
+  -habilidad : String
   -puntosDeVida : Real
 
-  +enfrentamientoVs (p : Personaje) : Boolean
+  +enfrentamientoVs (p : Personaje)
+     /'  '/
 
 }
 
@@ -20,20 +23,51 @@ class Guerrero extends Personaje {
 class Arquero extends Personaje {
 }
 
-class Arma {
-  -nombre : String
+abstract class Arma {
+  +atacarArmadura(arm : Armadura)
+
+  + <<abstract>> atacarArmaduraDeCuero()
+  + <<abstract>> atacarArmaduraDeAcero()
+  + <<abstract>> atacarArmaduraDeHierro()
 }
 
-class Armadura {
-  -nombre : String
+abstract class Armadura {
+
+  +recibirDañoDe(ar : Arma)  : Integer
+      /' return ar.atacarArmadura(this) '/
+
+  + <<abstract>> recibirDañoDeEspada() : Integer
+  + <<abstract>> recibirDañoDeArco() : Integer
+  + <<abstract>> recibirDañoDeBaston() : Integer
+  
 }
 
-class Habilidad {
-  -nombre : String
+class Espada extends Arma {
+
+
+}
+
+class Arco extends Arma {
+
+}
+
+class Baston extends Arma {
+
+}
+
+class ArmaduraCuero extends Armadura {
+
+}
+
+class ArmaduraAcero extends Armadura {
+
+}
+
+class ArmaduraHierro extends Armadura {
+
 }
 
 
 Personaje --> Armadura
 Personaje --> Arma
-Personaje --> "1..2" Habilidad
 @enduml
