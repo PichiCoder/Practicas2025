@@ -1,0 +1,83 @@
+@startuml
+
+interface File <<Component>> {
+
+    +prettyPrint() : String
+    +getNombre() : String
+    +getTamaño() : String
+    +getExtension() : String
+    +getFechaCreacion() : LocalDate
+    +getFechaModificacion() : LocalDate
+    +getPermisos() : String
+}
+
+class FileOO2 <<Concrete Component>> implements File {
+    +nombre: String
+    +tamaño: String
+    +Extension: String
+    +fechaCreacion: LocalDate
+    +fechaModificacion: LocalDate
+    +permisos: String
+
+    +prettyPrint() : String
+    +getNombre() : String
+    +getTamaño() : String
+    +getExtension() : String
+    +getFechaCreacion() : LocalDate
+    +getFechaModificacion() : LocalDate
+    +getPermisos() : String
+
+}
+
+abstract class FileDecorator <<Decorator>> {
+
+    + <<create>> FileDecorator(f : File)
+    + <<abstract>> prettyPrint() : String
+    +getNombre() : String
+    +getTamaño() : String
+    +getExtension() : String
+    +getFechaCreacion() : LocalDate
+    +getFechaModificacion() : LocalDate
+    +getPermisos() : String
+}
+
+class NombreDecorator <<Concrete Decorator>> extends FileDecorator {
+    +prettyPrint() : String
+        /'
+        return file.getNombre();
+        '/
+}
+
+class ExtensionDecorator <<Concrete Decorator>> extends FileDecorator {
+    +prettyPrint() : String
+}
+
+class FechaCreacionDecorator <<Concrete Decorator>> extends FileDecorator {
+    +prettyPrint() : String
+}
+
+class FechaModificacionDecorator <<Concrete Decorator>> extends FileDecorator {
+    +prettyPrint() : String
+}
+
+class PermisosDecorator <<Concrete Decorator>> extends FileDecorator {
+    +prettyPrint() : String
+} 
+
+
+
+/'
+
+      File f = new NombreDecorator (
+                new ExtensionDecorator (
+                    archivoOrigen
+                )
+      );
+      return f.prettyPrint();
+      '/
+'/
+
+FileDecorator --> "file 1" File
+FileDecorator -.-.|> File
+
+@enduml

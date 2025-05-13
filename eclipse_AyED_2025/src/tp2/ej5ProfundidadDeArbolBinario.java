@@ -14,7 +14,7 @@ public class ej5ProfundidadDeArbolBinario {
 		Queue<BinaryTree<Integer>> cola = new Queue<BinaryTree<Integer>>();
 		int nivel = 0, suma = 0;
 		
-		cola.enqueue(arbol);
+		cola.enqueue(this.arbol);
 		cola.enqueue(null);
 		
 		while (!cola.isEmpty() && nivel <= p) {
@@ -22,11 +22,14 @@ public class ej5ProfundidadDeArbolBinario {
 				
 			if (temp != null) {
 				
-				if (nivel == p) { suma+= temp.getData(); }
+				if (nivel == p) 
+					suma+= temp.getData(); 
 				
-				if (temp.hasLeftChild()) cola.enqueue(temp.getLeftChild());
+				if (temp.hasLeftChild()) 
+					cola.enqueue(temp.getLeftChild());
 				
-				if (temp.hasRightChild()) cola.enqueue(temp.getRightChild());
+				if (temp.hasRightChild()) 
+					cola.enqueue(temp.getRightChild());
 			}
 			else if (!cola.isEmpty()) {
 				nivel++;

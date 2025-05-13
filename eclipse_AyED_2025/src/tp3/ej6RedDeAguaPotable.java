@@ -24,9 +24,7 @@ public class ej6RedDeAguaPotable {
 	
 	public double minimoCaudal(double caudal) {
 		
-		return recorrido(caudal, this.cañerias);
-		
-		
+		return recorrido(caudal, this.cañerias);	
 	}
 	
 	public static void main (String [] args) {

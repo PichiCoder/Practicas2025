@@ -32,9 +32,9 @@ public class ej6Transformacion_V2 {
 	
 	public BinaryTree<Integer> suma () {
 		
-		transformarArbol(arbol);
+		transformarArbol(this.arbol);
 		
-		return arbol;
+		return this.arbol;
 	}
 	
 	public static void main(String[] args) {
