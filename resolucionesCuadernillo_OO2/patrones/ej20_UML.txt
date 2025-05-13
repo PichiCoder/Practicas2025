@@ -1,0 +1,39 @@
+@startuml
+/' Puede ser que sea un builder ? 
+Por un lado se construye el personaje, el tipo de pj es un BuilderConcreto , y lo mismo con las armas ?
+'/
+
+abstract class Personaje {
+  -nombre : String
+  -puntosDeVida : Real
+
+  +enfrentamientoVs (p : Personaje) : Boolean
+
+}
+
+class Mago extends Personaje {
+}
+
+class Guerrero extends Personaje {
+}
+
+class Arquero extends Personaje {
+}
+
+class Arma {
+  -nombre : String
+}
+
+class Armadura {
+  -nombre : String
+}
+
+class Habilidad {
+  -nombre : String
+}
+
+
+Personaje --> Armadura
+Personaje --> Arma
+Personaje --> "1..2" Habilidad
+@enduml
