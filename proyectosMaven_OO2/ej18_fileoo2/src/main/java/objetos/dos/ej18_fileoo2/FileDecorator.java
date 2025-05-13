@@ -11,7 +11,7 @@ public abstract class FileDecorator implements File {
 	@Override
 	public String prettyPrint() {
 		// TODO Auto-generated method stub
-		return archivo.prettyPrint();
+		return archivo.prettyPrint() + " ";
 	}
 
 	@Override
