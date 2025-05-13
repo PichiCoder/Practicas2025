@@ -1,0 +1,56 @@
+@startuml
+/'
+https://docs.google.com/document/d/1rK-ZwQNSjzt7lfvTaTGPRCxSj92hN_QhE0vIYjlyek8/edit?tab=t.0
+ '/
+
+/' El target del adapter seria el que consume HomeWeatherStation
+ pero aca no esta explicito, seria un test
+ 
+ El componente concreto del Decorator es AdapterHomeWeatherStation o el HomeWeatherStation ? 
+
+  '/
+
+interface WeatherData {
+    +getTemperatura() : Real
+    +getPresion() : Real
+    +getRadiacionSolar() : Real
+    +getTemperaturas() : [*] Real
+    +displayData() : String
+}
+
+class HomeWeatherStation <<Adaptee>> implements WeatherData {
+    +temperatura: Real
+    +presion: Real
+    +radiacionSolar: Real
+    +temperaturas: [*] Real
+
+    +getTemperatura() : Real
+    +getPresion() : Real
+    +getRadiacionSolar() : Real
+    +getTemperaturas() : [*] Real
+    +displayData() : String
+}
+
+class AdapterHomeWeatherStation <<Adapter>> <<? Concrete Component ?>>{
+    +displayData() : String
+    +setUnidadTemperatura(unidad : TempStrategy)
+}
+
+interface TempStrategy <<Strategy>> {
+    +calcularPromedio() : Real
+}
+
+class CelsiusStrategy <<Concrete Strategy>> implements TempStrategy {
+    +calcularPromedio() : Real
+}
+
+class FahrenheitStrategy <<Concrete Strategy>> implements TempStrategy {
+    +calcularPromedio() : Real
+}
+
+
+
+AdapterHomeWeatherStation --> TempStrategy
+AdapterHomeWeatherStation --> HomeWeatherStation
+
+@enduml
