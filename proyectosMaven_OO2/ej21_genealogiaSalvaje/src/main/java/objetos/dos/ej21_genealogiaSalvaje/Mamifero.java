@@ -58,7 +58,7 @@ public class Mamifero {
 	
 	public Mamifero getAbueloMaterno () {
 		
-		return Madre.getPadre(); //====> en casos como este hago uso del NullObject
+		return Madre.getPadre(); //====> casos como este donde haria null check, se aprovecha NullObject
 	}
 	
 	public Mamifero getAbueloPaterno() {
