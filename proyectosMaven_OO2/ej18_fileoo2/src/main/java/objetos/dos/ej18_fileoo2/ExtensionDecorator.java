@@ -10,6 +10,6 @@ public class ExtensionDecorator extends FileDecorator {
 	@Override
 	public String prettyPrint() {
 		// TODO Auto-generated method stub
-		return " ." + this.archivo.getExtension();
+		return this.prettyPrint() + this.archivo.getExtension();
 	}
 }
