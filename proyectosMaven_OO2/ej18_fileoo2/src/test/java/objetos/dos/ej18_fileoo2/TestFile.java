@@ -22,14 +22,13 @@ class TestFile {
 		
 		
 	}
-
 	@Test
 	void testNombreExtension() {
 		f = new NombreDecorator(
 				new ExtensionDecorator(
 						fReal));
 		
-		assertEquals("documento .txt", f.prettyPrint());
+		assertEquals("Los atributos del archivo son: txt documento", f.prettyPrint());
 	}
 
 }
