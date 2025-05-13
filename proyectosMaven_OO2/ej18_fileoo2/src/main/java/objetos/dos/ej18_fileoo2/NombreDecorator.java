@@ -10,6 +10,6 @@ public class NombreDecorator extends FileDecorator {
 	@Override
 	public String prettyPrint() {
 		// TODO Auto-generated method stub
-		return this.prettyPrint() + this.archivo.getNombre(); // ultimo cambio
+		return super.prettyPrint() + this.archivo.getNombre(); // ultimo cambio
 	}
 }
