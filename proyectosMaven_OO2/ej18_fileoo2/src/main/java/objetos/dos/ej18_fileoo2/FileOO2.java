@@ -22,7 +22,7 @@ public class FileOO2 implements File {
 	@Override
 	public String prettyPrint() {
 		// TODO Auto-generated method stub
-		return null;
+		return "";
 	}
 	
 	@Override
