@@ -34,18 +34,23 @@ class HomeWeatherStation <<Adaptee>> implements WeatherData {
 class AdapterHomeWeatherStation <<Adapter>> <<? Concrete Component ?>> implements  WeatherData{
     +displayData() : String
     +setUnidadTemperatura(unidad : TempStrategy)
+    +getTemperatura() : Real
+      return this.strategy.calcularTemperatura(this.adaptee.getTemperatura());
 }
 
 interface TempStrategy <<Strategy>> {
     +calcularPromedio() : Real
+    +calcularTemperatura() : Real
 }
 
 class CelsiusStrategy <<Concrete Strategy>> implements TempStrategy {
     +calcularPromedio() : Real
+    +calcularTemperatura() : Real
 }
 
 class FahrenheitStrategy <<Concrete Strategy>> implements TempStrategy {
     +calcularPromedio() : Real
+    +calcularTemperatura() : Real /'no hace nada'/
 }
 
 interface HomeWeatherStationDecorator <<Decorator>> {
