@@ -7,9 +7,8 @@ public class NombreDecorator extends FileDecorator {
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
-	public String prettyPrint() {
+	public String specificPrettyPrint() {
 		// TODO Auto-generated method stub
-		return super.prettyPrint() + this.archivo.getNombre(); // ultimo cambio
+		return this.archivo.getNombre(); // ultimo cambio
 	}
 }
