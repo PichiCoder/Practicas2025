@@ -10,7 +10,7 @@ https://docs.google.com/document/d/1rK-ZwQNSjzt7lfvTaTGPRCxSj92hN_QhE0vIYjlyek8/
 
   '/
 
-interface WeatherData {
+interface WeatherData <<Component>> {
     +getTemperatura() : Real
     +getPresion() : Real
     +getRadiacionSolar() : Real
@@ -31,7 +31,7 @@ class HomeWeatherStation <<Adaptee>> implements WeatherData {
     +displayData() : String
 }
 
-class AdapterHomeWeatherStation <<Adapter>> <<? Concrete Component ?>>{
+class AdapterHomeWeatherStation <<Adapter>> <<? Concrete Component ?>> implements  WeatherData{
     +displayData() : String
     +setUnidadTemperatura(unidad : TempStrategy)
 }
@@ -48,9 +48,29 @@ class FahrenheitStrategy <<Concrete Strategy>> implements TempStrategy {
     +calcularPromedio() : Real
 }
 
+interface HomeWeatherStationDecorator <<Decorator>> {
+}
+
+
+class TemperaturaDecorator <<Concrete Decorator>> extends HomeWeatherStationDecorator {
+    +displayData() : String
+}
+
+class TemperaturaPromedioDecorator <<Concrete Decorator>> extends HomeWeatherStationDecorator {
+    +displayData() : String
+}
+
+class PresionDecorator <<Concrete Decorator>> extends HomeWeatherStationDecorator {
+    +displayData() : String
+}
+
+class RadiacionSolarDecorator <<Concrete Decorator>> extends HomeWeatherStationDecorator {
+    +displayData() : String
+}
 
 
 AdapterHomeWeatherStation --> TempStrategy
 AdapterHomeWeatherStation --> HomeWeatherStation
-
+HomeWeatherStationDecorator -.-.|> WeatherData
+HomeWeatherStationDecorator --> WeatherData
 @enduml
